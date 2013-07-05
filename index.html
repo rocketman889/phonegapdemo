@@ -15,8 +15,8 @@
 			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
 				<h1>Menu</h1>
 				<ul data-role="listview" data-theme="c">
-					<li>Sign In</li>
-					<li><a href="#">Maps</a></li>
+					<li><a href="#signIn">Sign In</a></li>
+					<li><a href="#fishTile">Fish Types</a></li>
 					<li><a href="#">Rules</a></li>
 					<li><a href="#">Emergency Details</a></li>
 				</ul>
@@ -25,17 +25,96 @@
 			<div data-role="header" data-theme="b">
 				<a href="#menu">Menu</a>
 				<h1>Spearfishing</h1>
-				<a href="about">About</a>
+				<a href="#about" data-transition="slide" data-inline="true">About</a>
 			</div>
 			<div data-role="content" data-theme="b">
-				<p>Welcome to Bermuda's first spearfishing app! Click below to add a new catch! </p>
+				<p>Welcome to Bermuda's first spearfishing app! Click the menu button to see more features of the app. Click below to add a new catch! </p>
 				<a href="#newCatch" data-role="button" >Add Fish</a>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h4>Something's Developing</h4>
 			</div>
 		</div>
+<!-- Fish Types -->		
+		<div id="fishTile" data-role="page" data-theme="b">
+			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
+				<h1>Menu</h1>
+				<ul data-role="listview" data-theme="c">
+					<li>Sign In</li>
+					
+				</ul>
+				<a href="#menu" data-role="button" data-rel="close">Close </a>
+			</div>
+			<div data-role="header" data-theme="b">
+				<a href="#menu">Menu</a>
+				<h1>Spearfishing</h1>
+				<a href="#home">Home</a>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>Click on one of the fish below to get more information about the fish</p>
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#fishDetail">
+						<img src="assets/fish/blackrockfish.JPG">
+						<h2>Black Rockfish</h2>
+						<p>Min Length: 32 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/coney.jpg">
+						<h2>Coney</h2>
+						<p>Min Length: 16 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/red_hind.jpg">
+						<h2>Red Hind</h2>
+						<p>Min Length: 12 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/graysby.jpg">
+						<h2>Graysby</h2>
+						<p>Min Length: 13 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/amberjack.jpg">
+						<h2>Amberjack</h2>
+						<p>Min Length: 8 inches</p></a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h4>Something's Developing</h4>
+			</div>
+		</div>
 		
+		
+<!-- Fish Details page. TO be dynamically produced -->
+		<div id="fishDetail" data-role="page" data-theme="b">
+			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
+				<h1>Menu</h1>
+				<ul data-role="listview" data-theme="c">
+					<li>Sign In</li>
+					
+				</ul>
+				<a href="#menu" data-role="button" data-rel="close">Close </a>
+			</div>
+			<div data-role="header" data-theme="b">
+				<a href="#fishTile">Back</a>
+				<h1>Black Rockfish</h1>
+				<a href="#home">Home</a>
+			</div>
+			<div data-role="content" data-theme="b">
+				<img src="assets/fish/blackrockfish.JPG" title="Black Rock Fish">
+				<h2>Black Rockfish</h2>
+				<h4>Min Catch Length: 32 inches</h4>
+				<h4>Bag Limit: 1 per day</h4>
+				<h4>Other information: Something interesting</h4>
+				<h4>Further Information here... :)</h4>	
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h4>Something's Developing</h4>
+			</div>
+		</div>		
+		
+<!-- Add Fish -->		
 		<div id="newCatch" data-role="page" data-theme="b">
 			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
 				<h1>Menu</h1>
@@ -76,12 +155,14 @@
 					<option value="other">Other - Please specify</option>
 				</select>
 				
+				
+				
 				<label for="area">Area Caught</label>
 				<a type="button" href="#islandMap" data-rel="dialog">Open dialog</a>
 				<input type="text" name="areaCode" value="" readonly>
 				
 				<label for="length">Length (inches)</label>
-				<input type="text" name="length" id="text-basic" value="">
+				<input type="number" name="length" id="text-basic" value="">
 				
 				<label for="date">Date Caught</label>
 				<input type="date" name="date" id="date" value="">
@@ -93,16 +174,50 @@
 				<h4>Something's Developing</h4>
 			</div>
 		</div>
-		
-		<div id="islandMap" data-role="page">
-			<div data-role="header">
+
+<!-- islandMap Page -->		
+		<div id="islandMap" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
 				<button data-close-btn="none">X</button>
 				<h1>Map</h1>
 			</div>
-			<div data-role="content">
+			<div data-role="content" data-theme="b">
 				<img src="assets/imgs/islandmap.png" title="Map of Bermuda with Grid" />
 			</div>
-			<div data-role="footer">
+			<div data-role="footer" data-theme="b">
+			</div>
+		</div>
+		
+<!-- About Page-->	
+		<div id="about" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>About</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>This app was created to make the lives of Bermuda's Spearfishers easier for reporting their catches to the Fisheries Department as well as for a personal tracker. The app contains the rules for spearfishing, emergency contact info, and other useful information for spearfishing!</p>
+			</div>
+			<div data-role="footer" data-theme="b">
+				<h1>Something's Developing</h1>
+			</div>
+		</div>
+
+<!-- Sign In Page-->		
+		<div id="signIn" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Sign In</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>Please sign in to your account</p>
+				<label for="spearfishingLicense">Spearfishing License#:</label>
+				<input type="number" name="spearfishingLicense" id="spearfishingLicense" placeholder="License Number" value="">
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password" placeholder="" value="">
+				
+				<button type="submit" id="submit">Sign In</button>
+			</div>
+			<div data-role="footer" data-theme="b">
 			</div>
 		</div>
 		
