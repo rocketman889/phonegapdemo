@@ -19,10 +19,16 @@
 				<h1>Menu</h1>
 				<ul data-role="listview" data-theme="c">
 					<li><a href="#signIn">Sign In</a></li>
-					<li><a href="#fishTile">Fish Types</a></li>
-					<li><a href="#">Rules</a></li>
-					<li><a href="#">Emergency Details</a></li>
+					<li><a href="#catchHistory">Catch History</a></li>
 				</ul>
+				<h1>Information</h1>
+				<ul data-role="listview" data-theme="c">
+					<li><a href="#islandMap">Island Maps</a></li>
+					<li><a href="#fishTile">Fish Types</a></li>
+					<li><a href="#spearfishingRules">Rules</a></li>
+					<li><a href="#emergency">Emergency Details</a></li>
+				</ul>
+				<br>
 				<a href="#menu" data-role="button" data-rel="close">Close </a>
 			</div>
 			<div data-role="header" data-theme="b">
@@ -31,6 +37,7 @@
 				<a href="#about" data-transition="slide" data-inline="true">About</a>
 			</div>
 			<div data-role="content" data-theme="b">
+				<center><img src="assets/imgs/bdaSpearfishing.png" title="Spearfisher"></center>
 				<p>Welcome to Bermuda's first spearfishing app! Click the menu button to see more features of the app. Click below to add a new catch! </p>
 				<a href="#newCatch" data-role="button" >Add Fish</a>
 			</div>
@@ -199,8 +206,122 @@
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>This app was created to make the lives of Bermuda's Spearfishers easier for reporting their catches to the Fisheries Department as well as for a personal tracker. The app contains the rules for spearfishing, emergency contact info, and other useful information for spearfishing!</p>
+				<p>Please submit any feedback on this app so that we may improve the experience for you!</p>
 			</div>
-			<div data-role="footer" data-theme="b">
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>Something's Developing</h1>
+			</div>
+		</div>
+		
+<!-- Emergency Page-->	
+		<div id="emergency" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Emergency Info</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<h2>Telephone Numbers</h2>
+				<p>Harbour Radio: (441) 295-XXXX</p>
+				<p>King Edward Memorial Hospital: (441) 295-XXXX</p>
+				<h2>Radio Channels</h2>
+				<p>Test Channel for radio: 17</p>
+				<p>Emergency Radio Channel: 16</p>
+				
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>Something's Developing</h1>
+			</div>
+		</div>
+		
+<!-- catchHistory Page-->	
+		<div id="catchHistory" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Catch History</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>This is your catch history</p>
+				<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
+				  <thead>
+					<tr>
+					  <th data-priority="1">Rank</th>
+					  <th data-priority="persist">Fish Type</th>
+					  <th data-priority="2">Length</th>
+					  <th data-priority="3">Date</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <th>1</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Sept 27, 2013</td>
+					</tr>
+					 <th>2</th>
+					  <td><a href="#fishDetails" data-rel="external">Gold Fish</a></td>
+					  <td>32 in</td>
+					  <td>June 27, 2013</td>
+					</tr>
+					 <th>3</th>
+					  <td><a href="#fishDetails" data-rel="external">Fry</a></td>
+					  <td>3 in</td>
+					  <td>Aug 2, 2013</td>
+					</tr>
+					 <th>4</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Dec 27, 2013</td>
+					</tr>
+					 <th>5</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Sept 27, 2013</td>
+					</tr>
+					 <th>6</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Sept 27, 2013</td>
+					</tr>
+					 <th>7</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Sept 27, 2013</td>
+					</tr>
+					 <th>8</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Sept 27, 2013</td>
+					</tr>
+					 <th>9</th>
+					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td>38 in</td>
+					  <td>Sept 27, 2013</td>
+					</tr>
+				  </tbody>
+				</table>
+				
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>Something's Developing</h1>
+			</div>
+		</div>
+
+<!-- Spearfishing Rules Page-->	
+		<div id="spearfishingRules" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Spearfishing Rules</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<h2>You MUST obey by these rules</h2>
+				<ul>
+					<li>You must be one mile offshore, unless you hold a valid Lion Fish Culling Licence</li>
+					<li>You must use a spear pole, not a spear gun</li>
+					<li>You must abide to the bag limit</li>
+					<li>You must report your catches (this app automatically does that for you) :)</li>
+				</ul>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h1>Something's Developing</h1>
 			</div>
 		</div>
@@ -220,7 +341,7 @@
 				
 				<button type="submit" id="submit">Sign In</button>
 			</div>
-			<div data-role="footer" data-theme="b">
+			<div data-role="footer" data-position="fixed" data-theme="b">
 			</div>
 		</div>
 		
