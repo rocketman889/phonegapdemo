@@ -4,16 +4,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Bermuda Spearfishing</title>
 
-		<link rel="stylesheet"  href="assets/jquery.mobile-1.3.1.min.css">
+		<link rel="stylesheet"  href="jquery.mobile-1.3.1.min.css">
 		<link rel="shortcut icon" href="favicon.ico">
-		<script src="assets/jquery.js"></script>
-		<script src="assets/jquery.mobile-1.3.1.min.js"></script>
+		<script src="jquery.js"></script>
+		<script src="jquery.mobile-1.3.1.min.js"></script>
 		
 		<icon src="assets/imgs/bdaSpearfishing.png" width="72" height="72" />
 		
 	</head>
-	<body >
-	
+	<body>
+
+<!-- Home -->	
 		<div id="home" data-role="page" data-theme="b">
 			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
 				<h1>Menu</h1>
@@ -24,22 +25,31 @@
 				<h1>Information</h1>
 				<ul data-role="listview" data-theme="c">
 					<li><a href="#islandMap">Island Maps</a></li>
+					<li><a href="#islandMap2">Island Map Grid</a></li>
 					<li><a href="#fishTile">Fish Types</a></li>
-					<li><a href="#spearfishingRules">Rules</a></li>
+					<li><a href="#lobsterDivingRules">Lobster Diving Rules</a></li>
+					<li><a href="#spearfishingRules">Spearfishing Rules</a></li>
 					<li><a href="#emergency">Emergency Details</a></li>
+					<li><a href="#mapSettings">Map Settings</a></li>
 				</ul>
 				<br>
 				<a href="#menu" data-role="button" data-rel="close">Close </a>
 			</div>
 			<div data-role="header" data-theme="b">
-				<a href="#menu">Menu</a>
-				<h1>Spearfishing</h1>
-				<a href="#about" data-transition="slide" data-inline="true">About</a>
+				<a href="#menu" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
+				<h1>Spearfishing & Lobstering</h1>
+				<a href="#about" data-transition="slide" >About</a>
 			</div>
 			<div data-role="content" data-theme="b">
-				<center><img src="assets/imgs/bdaSpearfishing.png" title="Spearfisher"></center>
-				<p>Welcome to Bermuda's first spearfishing app! Click the menu button to see more features of the app. Click below to add a new catch! </p>
-				<a href="#newCatch" data-role="button" >Add Fish</a>
+				<center><img src="assets/imgs/bdaLobsterDiver.png" title="Lobster Diver" height=200 width=300></center>
+				<p>Welcome to Bermuda's first lobster diving and spearfishing app! Click the menu button to see the rules associated with lobster diving and spearfishing.</p>
+				<br>
+				<p>Click below to add either a new lobster or spearfishing catch!</p>
+				<center>
+					<a href="#newLobsterCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true" >Add Lobster</a>
+					<br>
+					<a href="#newSpearCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true">Add Fish</a>
+				</center>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h4>Something's Developing</h4>
@@ -47,18 +57,9 @@
 		</div>
 <!-- Fish Types -->		
 		<div id="fishTile" data-role="page" data-theme="b">
-			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
-				<h1>Menu</h1>
-				<ul data-role="listview" data-theme="c">
-					<li>Sign In</li>
-					
-				</ul>
-				<a href="#menu" data-role="button" data-rel="close">Close </a>
-			</div>
 			<div data-role="header" data-theme="b">
-				<a href="#menu">Menu</a>
+				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
 				<h1>Spearfishing</h1>
-				<a href="#home">Home</a>
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>Click on one of the fish below to get more information about the fish</p>
@@ -67,6 +68,46 @@
 						<img src="assets/fish/blackrockfish.JPG">
 						<h2>Black Rockfish</h2>
 						<p>Min Length: 32 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/coney.jpg">
+						<h2>Coney</h2>
+						<p>Min Length: 16 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/red_hind.jpg">
+						<h2>Red Hind</h2>
+						<p>Min Length: 12 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/graysby.jpg">
+						<h2>Graysby</h2>
+						<p>Min Length: 13 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/amberjack.jpg">
+						<h2>Amberjack</h2>
+						<p>Min Length: 8 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/coney.jpg">
+						<h2>Coney</h2>
+						<p>Min Length: 16 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/red_hind.jpg">
+						<h2>Red Hind</h2>
+						<p>Min Length: 12 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/graysby.jpg">
+						<h2>Graysby</h2>
+						<p>Min Length: 13 inches</p></a>
+					</li>
+					<li><a href="#">
+						<img src="assets/fish/amberjack.jpg">
+						<h2>Amberjack</h2>
+						<p>Min Length: 8 inches</p></a>
 					</li>
 					<li><a href="#">
 						<img src="assets/fish/coney.jpg">
@@ -107,9 +148,8 @@
 				<a href="#menu" data-role="button" data-rel="close">Close </a>
 			</div>
 			<div data-role="header" data-theme="b">
-				<a href="#fishTile">Back</a>
+				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
 				<h1>Black Rockfish</h1>
-				<a href="#home">Home</a>
 			</div>
 			<div data-role="content" data-theme="b">
 				<img src="assets/fish/blackrockfish.JPG" title="Black Rock Fish">
@@ -125,15 +165,15 @@
 		</div>		
 		
 <!-- Add Fish -->		
-		<div id="newCatch" data-role="page" data-theme="b">
+		<div id="newSpearCatch" data-role="page" data-theme="b">
 			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
 				<h1>Menu</h1>
 				
 			</div>
 			<div data-role="header" data-theme="b">
-				<a href="#menu">Menu</a>
+				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
 				<h1>Spearfishing</h1>
-				<a href="#home">Home</a>
+				
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>Congrats on your catch! Fill out the details below!</p>
@@ -165,18 +205,51 @@
 					<option value="other">Other - Please specify</option>
 				</select>
 				
-				
-				
-				<label for="area">Area Caught</label>
-				<a type="button" href="#islandMap" data-rel="dialog">Open dialog</a>
-				<input type="text" name="areaCode" value="" readonly>
-				
+				<br>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>Area Caught:</legend>
+						<label for="select-h-2b">Select Vertical</label>
+						<select name="select-h-2b" id="select-h-2b">
+							<option value="#">Alpha</option>
+							<option value="#">Bravo</option>
+							<option value="#">Charlie</option>
+							<option value="#">Delta</option>
+							<option value="#">Echo</option>
+							<option value="#">Foxtrot</option>
+							<option value="#">Golf</option>
+							<option value="#">India</option>
+							<option value="#">Juliett</option>
+						</select>
+						
+						<label for="select-h-2a">Select Horizontal</label>
+						<select name="select-h-2a" id="select-h-2a">
+							<option value="#">3</option>
+							<option value="#">4</option>
+							<option value="#">5</option>
+							<option value="#">6</option>
+							<option value="#">7</option>
+							<option value="#">8</option>
+							<option value="#">9</option>
+							<option value="#">10</option>
+							<option value="#">11</option>
+							<option value="#">12</option>
+							<option value="#">13</option>
+							<option value="#">14</option>
+							<option value="#">15</option>
+						</select>
+					</fieldset>
+					<p>OR<p/>
+				<a type="button" href="#islandMap" data-inline="true" data-icon="search" data-iconpos="left" data-rel="dialog">Select Area from Map</a>
+				<br><br>
 				<label for="length">Length (inches)</label>
 				<input type="number" name="length" id="text-basic" value="">
-				
+				<br>
+				<label for="weight">Weight (pounds)</label>
+				<input type="number" name="weight" id="weight" value="">
+				<br>
 				<label for="date">Date Caught</label>
 				<input type="date" name="date" id="date" value="">
-				
+				<br>
 				<label for="submit">Send:</label>
 				<button type="submit" id="submit">Submit</button>
 			</div>
@@ -185,10 +258,97 @@
 			</div>
 		</div>
 
+<!-- Add Lobster -->		
+		<div id="newLobsterCatch" data-role="page" data-theme="b">
+			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
+				<h1>Menu</h1>
+				
+			</div>
+			<div data-role="header" data-theme="b">
+				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
+				<h1>Lobster Diving</h1>
+				
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>Congrats on your lobster catch! Fill out the details below!</p>
+				<form >
+					<label for="lobsterType" class="select">Select Lobster Species</label>
+					<select name="fishType" id="fishType">
+						<option value="spiny">Spiny Lobster</option>
+						<option value="slipper">Slipper Lobster</option>
+						<option value="guinea">Guinea Chicks</option>
+					</select>
+					<br>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>Area Caught:</legend>
+						<label for="select-h-2b">Select Vertical</label>
+						<select name="select-h-2b" id="select-h-2b">
+							<option value="#">Alpha</option>
+							<option value="#">Bravo</option>
+							<option value="#">Charlie</option>
+							<option value="#">Delta</option>
+							<option value="#">Echo</option>
+							<option value="#">Foxtrot</option>
+							<option value="#">Golf</option>
+							<option value="#">India</option>
+							<option value="#">Juliett</option>
+						</select>
+						
+						<label for="select-h-2a">Select Horizontal</label>
+						<select name="select-h-2a" id="select-h-2a">
+							<option value="#">3</option>
+							<option value="#">4</option>
+							<option value="#">5</option>
+							<option value="#">6</option>
+							<option value="#">7</option>
+							<option value="#">8</option>
+							<option value="#">9</option>
+							<option value="#">10</option>
+							<option value="#">11</option>
+							<option value="#">12</option>
+							<option value="#">13</option>
+							<option value="#">14</option>
+							<option value="#">15</option>
+						</select>
+					</fieldset>
+					<p>OR<p/>
+					<a type="button" href="#islandMap" data-inline="true" data-icon="search" data-iconpos="left" data-rel="dialog">Select Area from Map</a>
+									
+					<br>
+					<fieldset data-role="controlgroup">
+						<legend>Lobster Sex:</legend>
+							<input type="radio" name="lobsterSex" id="lobsterMale" value="male" checked="checked">
+							<label for="lobsterMale">Male</label>
+							<input type="radio" name="lobsterSex" id="lobsterFemale" value="female">
+							<label for="lobsterFemale">Female</label>
+					</fieldset>
+					<br>
+					<label for="length">Length (inches)</label>
+					<select name="length" id="length">
+						<option value="1">3-5/8" - 4"</option>
+						<option value="2">4" - 5"</option>
+						<option value="3">5" - 6"</option>
+						<option value="4">6" - 7"</option>
+						<option value="5">7" - 8"</option>
+						<option value="6">8" & Up</option>
+					</select>
+					<br>
+					<label for="date">Date Caught</label>
+					<input type="date" name="date" id="date" value="">
+					<br>
+					<br>
+					<button type="submit" id="submit">Submit</button>
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h4>Something's Developing</h4>
+			</div>
+		</div>
+
+
 <!-- islandMap Page -->		
 		<div id="islandMap" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
-				<button data-close-btn="none">X</button>
 				<h1>Map</h1>
 			</div>
 			<div data-role="content" data-theme="b">
@@ -198,15 +358,65 @@
 			</div>
 		</div>
 		
+		
+		<div id="islandMap2" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<button data-close-btn="none">X</button>
+				<h1>Map2</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<!--<img src="assets/imgs/islandmap.png" title="Map of Bermuda with Grid" /> -->
+				<div class="ui-grid-d">
+					<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:40px">I3</div></div>
+					<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:40px">I6</div></div>
+					<div class="ui-block-c"><div class="ui-bar ui-bar-e" style="height:40px">I9</div></div>
+					<div class="ui-block-d"><div class="ui-bar ui-bar-e" style="height:40px">I12</div></div>
+					<div class="ui-block-e"><div class="ui-bar ui-bar-e" style="height:40px">I15</div></div>
+					
+					<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:40px">G3</div></div>
+					<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:40px">G6</div></div>
+					<div class="ui-block-c"><div class="ui-bar ui-bar-e" style="height:40px">G9</div></div>
+					<div class="ui-block-d"><div class="ui-bar ui-bar-e" style="height:40px">G12</div></div>
+					<div class="ui-block-e"><div class="ui-bar ui-bar-e" style="height:40px">G15</div></div>
+					
+					<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:40px">E3</div></div>
+					<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:40px">E6</div></div>
+					<div class="ui-block-c"><div class="ui-bar ui-bar-e" style="height:40px">E9</div></div>
+					<div class="ui-block-d"><div class="ui-bar ui-bar-e" style="height:40px">E12</div></div>
+					<div class="ui-block-e"><div class="ui-bar ui-bar-e" style="height:40px">E15</div></div>
+					
+					<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:40px">C3</div></div>
+					<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:40px">C6</div></div>
+					<div class="ui-block-c"><div class="ui-bar ui-bar-e" style="height:40px">C9</div></div>
+					<div class="ui-block-d"><div class="ui-bar ui-bar-e" style="height:40px">C12</div></div>
+					<div class="ui-block-e"><div class="ui-bar ui-bar-e" style="height:40px">C15</div></div>
+					
+					<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:40px">A3</div></div>
+					<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:40px">A6</div></div>
+					<div class="ui-block-c"><div class="ui-bar ui-bar-e" style="height:40px">A9</div></div>
+					<div class="ui-block-d"><div class="ui-bar ui-bar-e" style="height:40px">A12</div></div>
+					<div class="ui-block-e"><div class="ui-bar ui-bar-e" style="height:40px">A15</div></div>
+					
+					
+				</div>
+				
+			</div>
+			<div data-role="footer" data-theme="b">
+			</div>
+		</div>
+		
+
+
 <!-- About Page-->	
 		<div id="about" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
-				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
 				<h1>About</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-				<p>This app was created to make the lives of Bermuda's Spearfishers easier for reporting their catches to the Fisheries Department as well as for a personal tracker. The app contains the rules for spearfishing, emergency contact info, and other useful information for spearfishing!</p>
+				<p>This app was created to make the lives of Bermuda's Recreational Lobster Divers and Spearfishers easier for reporting their catches to the Department of Environmental Protection as well as to track for yourself. The app contains the rules for lobster diving, spearfishing, an island map, emergency contact info, and other useful information for lobster diving and spearfishing!</p>
 				<p>Please submit any feedback on this app so that we may improve the experience for you!</p>
+				<button>Submit Feedback!</button>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h1>Something's Developing</h1>
@@ -216,7 +426,7 @@
 <!-- Emergency Page-->	
 		<div id="emergency" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
-				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
 				<h1>Emergency Info</h1>
 			</div>
 			<div data-role="content" data-theme="b">
@@ -236,11 +446,11 @@
 <!-- catchHistory Page-->	
 		<div id="catchHistory" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
-				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
 				<h1>Catch History</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-				<p>This is your catch history</p>
+				<p>This is your catch history. Click on the Details button to show/hide information from the table.</p>
 				<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
 				  <thead>
 					<tr>
@@ -253,47 +463,47 @@
 				  <tbody>
 					<tr>
 					  <th>1</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Sept 27, 2013</td>
 					</tr>
 					 <th>2</th>
-					  <td><a href="#fishDetails" data-rel="external">Gold Fish</a></td>
+					  <td><a href="#fishDetail" >Gold Fish</a></td>
 					  <td>32 in</td>
 					  <td>June 27, 2013</td>
 					</tr>
 					 <th>3</th>
-					  <td><a href="#fishDetails" data-rel="external">Fry</a></td>
+					  <td><a href="#fishDetail" >Fry</a></td>
 					  <td>3 in</td>
 					  <td>Aug 2, 2013</td>
 					</tr>
 					 <th>4</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Dec 27, 2013</td>
 					</tr>
 					 <th>5</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Sept 27, 2013</td>
 					</tr>
 					 <th>6</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Sept 27, 2013</td>
 					</tr>
 					 <th>7</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Sept 27, 2013</td>
 					</tr>
 					 <th>8</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Sept 27, 2013</td>
 					</tr>
 					 <th>9</th>
-					  <td><a href="#fishDetails" data-rel="external">Black Rock Fish</a></td>
+					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
 					  <td>38 in</td>
 					  <td>Sept 27, 2013</td>
 					</tr>
@@ -306,19 +516,67 @@
 			</div>
 		</div>
 
+<!-- Lobster Rules Page-->	
+		<div id="lobsterDivingRules" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Lobster Diving Rules</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<h2>You are permitted to:</h2>
+				<ol>
+					<li>Take lobsters during the spiny lobster season from September 1st to March 31st each year</li>
+					<li>Take, with the use of an approved noose, a maximum of two lobsters in any twenty-four (24) hour period. Spears, harpoons, staffs and grains or any other similar devices <strong>CANNOT</strong> be used to take lobsters.</li>
+				</ol>
+				
+				<h2>You are <strong>NOT</strong> permitted to:</h2>
+				<ol>
+					<li>Take, injure, sell, purchase or be in possession of any lobster whether alive or dead at any time when the lobster is bearing eggs.</li>
+					<li>Use any appliance, apparatus or mechanism that would enable you to breathe when fully submerged in water.</li>
+					<li>Sell, trade or barter spiny lobsters.</li>
+					<li>Wring, dismember or separate the tails at sea.</li>
+					<li>Take any lobsters in any harbour, bay, inlet, creek or sound OR in the area south of the South Channel on the north shore from Commissioner's Point following the South Channel in an easterly direction to buoy 16A (The Narrows). The eastern boundary of the closed area is an imaginary line drawn from Buoy 16A to the western end of Tabacco Bay on the north shore. The area south of an imaginary line between King's Point and Grey's Bridge is also closed to lobster diving.</li>
+				</ol>
+				
+				<h2>You are required to:</h2>
+				<ol>
+					<li>Carry on your person, or on the vessel, or shore from which you are diving, your licence to take lobsters.</li>
+					<li>Carry a measuring instrument capable of measuring a spiny lobster for legal size conformity.</li>
+					<li>Keep a log of your diving activities with respect to catch and area and submit to the Department of Environmental Protection. Using this app is the ideal and preferred method.</li>
+				</ol>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>Something's Developing</h1>
+			</div>
+		</div>
+		
 <!-- Spearfishing Rules Page-->	
 		<div id="spearfishingRules" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
-				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
 				<h1>Spearfishing Rules</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-				<h2>You MUST obey by these rules</h2>
+				<h2>It is an offense:</h2>
 				<ul>
-					<li>You must be one mile offshore, unless you hold a valid Lion Fish Culling Licence</li>
-					<li>You must use a spear pole, not a spear gun</li>
-					<li>You must abide to the bag limit</li>
-					<li>You must report your catches (this app automatically does that for you) :)</li>
+					<li>to use a speargun in taking fish</li>
+					<li>to use an aqualung in taking fish by any means</li>
+					<li>to take or injure any lobster by spearfishing</li>
+					<li>to take or injure by spearfishing in any one day more than two fish of any species (other than black rockfish and monkey rockfish (One per day) and lionfish (No limit)</li>
+					<li>to take by spearfishing any fish within one nautical mile of the shore of any of the islands of Bermuda</li>
+					<li>to sell any fish taken by spearfishing</li>
+				</ul>
+				
+				<h2>Additional restrictions:</h2>
+				<ul>
+					<li>Any fish found in a vessel in which an aqualung is being carried or any fish found in the possession of any person equipped with an aqualung shall be presumed to have been taken in contravention of the Fisheries Regulations until the contrary is proved</li>
+					<li>Any person found swimming within an area in which spearfishing is prohibited by the Fisheries Regulations, while carrying a spear, harpoon or other similar device, or swimming in an area in which the taking of lobsters by diving is prohibited, while carrying an instrument capable of taking a lobster other than a spear, harpoon or other similar device commits an offense.</li>
+					<li>Subject to the Fisheries Regulations, any person found with an instrument capable of taking a lobster, or with a spear, harpoon or other similar device and an aqualugn in his possession, either when in a vessel or on his person, while swimming, commits an offense.</li>
+				</ul>
+				
+				<h2>Recommendation</h2>
+				<ul>
+					<li>Spearfishers targeting rockfish should use a spear with a slip tip to increase the likelihood of retaining the fish.</li>
 				</ul>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
@@ -329,17 +587,68 @@
 <!-- Sign In Page-->		
 		<div id="signIn" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
-				<a data-direction="reverse" data-transition="slide" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
 				<h1>Sign In</h1>
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>Please sign in to your account</p>
-				<label for="spearfishingLicense">Spearfishing License#:</label>
-				<input type="number" name="spearfishingLicense" id="spearfishingLicense" placeholder="License Number" value="">
+				<label for="email">Email</label>
+				<input type="text" name="email" id="email" placeholder="" value="">
+				
 				<label for="password">Password</label>
 				<input type="password" name="password" id="password" placeholder="" value="">
+				<br>
+				<label for="lobsterLicense">Lobster License#:</label>
+				<input type="number" name="lobsterLicense" id="lobsterLicense" placeholder="License Number" value="">
+				
+				<label for="spearfishingLicense">Spearfishing License#:</label>
+				<input type="number" name="spearfishingLicense" id="spearfishingLicense" placeholder="License Number" value="">
+				
 				
 				<button type="submit" id="submit">Sign In</button>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+			</div>
+		</div>
+
+<!-- Map Settings Page-->		
+		<div id="mapSettings" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Map Settings</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>Configure the settings you wish to have for the island map</p>
+				 <form>
+					<fieldset data-role="controlgroup" data-iconpos="right">
+						<legend>User Settings:</legend>
+						<input type="checkbox" name="previousLobsterCatches" id="previousLobsterCatches">
+						<label for="previousLobsterCatches">Display Previous Lobster Catches</label>
+						
+						<input type="checkbox" name="lobsterHoles" id="lobsterHoles">
+						<label for="lobsterHoles">Display Lobster Holes</label>
+						
+						<input type="checkbox" name="spearedFishLocations" id="spearedFishLocations">
+						<label for="spearedFishLocations">Display Speared Fish Locations</label>
+					</fieldset>
+					<br>
+					<fieldset data-role="controlgroup" data-iconpos="right">
+						<legend>Informational Settings:</legend>
+						<input type="checkbox" name="shipwrecks" id="shipwrecks">
+						<label for="shipwrecks">Display Shipwrecks</label>
+						
+						<input type="checkbox" name="buoys" id="buoys">
+						<label for="buoys">Display Buoys</label>
+						
+						<input type="checkbox" name="lobsterRestricted" id="lobsterRestricted">
+						<label for="lobsterRestricted">Display Lobster Restricted areas</label>
+						
+						<input type="checkbox" name="spearRestricted" id="spearRestricted">
+						<label for="spearRestricted">Display Spearfishing Restricted areas</label>
+					</fieldset>
+				</form>
+				
+				<button type="submit" id="submit">Save & Apply</button>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 			</div>
