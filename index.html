@@ -12,6 +12,10 @@
 		<icon src="assets/imgs/bdaSpearfishing.png" width="72" height="72" />
 		
 		<script>
+		$(document).bind('mobileinit', function(){
+			$.mobile.metaViewportContent = 'width=device-width';
+		});
+
 		function load(){
 			var clicking = false;
 			var previousX;
