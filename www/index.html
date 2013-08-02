@@ -2,66 +2,17 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bermuda Spearfishing</title>
+		<title>Bermuda Lobstering & Spearfishing</title>
 
-		<link rel="stylesheet"  href="jquery.mobile-1.3.1.min.css">
+		<link rel="stylesheet"  href="css/jquery.mobile-1.3.1.min.css">
 		<link rel="shortcut icon" href="favicon.ico">
-		<script src="jquery.js"></script>
-		<script src="jquery.mobile-1.3.1.min.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/bdaLS.js"></script>		
+		<script src="js/jquery.mobile-1.3.1.min.js"></script>
 		
-		<icon src="assets/imgs/bdaSpearfishing.png" width="72" height="72" />
+		<icon src="img/imgs/bdaSpearfishing.png" width="72" height="72" />
 		
-		<script>
-		$(document).bind('mobileinit', function(){
-			$.mobile.metaViewportContent = 'width=device-width';
-		});
-
-		function load(){
-			var clicking = false;
-			var previousX;
-			var previousY;
-			
-			$("#scroll").mousedown(function(e) {
-			    e.preventDefault();
-			    previousX = e.clientX;
-			    previousY = e.clientY;
-			    clicking = true;
-			});
-			
-			$(document).mouseup(function() {
-			      
-			    clicking = false;
-			});
-			
-			$("#scroll").mousemove(function(e) {
-			
-			    if (clicking) {
-			        e.preventDefault();
-			        var directionX = (previousX - e.clientX) > 0 ? 1 : -1;
-			        var directionY = (previousY - e.clientY) > 0 ? 1 : -1;
-			        //$("#scroll").scrollLeft($("#scroll").scrollLeft() + 10 * directionX);
-			        //$("#scroll").scrollTop($("#scroll").scrollTop() + 10 * directionY);
-			        $("#scroll").scrollLeft($("#scroll").scrollLeft() + (previousX - e.clientX));
-			        $("#scroll").scrollTop($("#scroll").scrollTop() + (previousY - e.clientY));
-			        previousX = e.clientX;
-			        previousY = e.clientY;
-			    }
-			});
-		}
-		</script>
-		
-		<style>
-			#scroll {
-			    width: 100%;
-			    height: 800px;
-			    overflow:hidden;
-			}
-			
-			.blue {
-			    width: 1800px;
-			    height: 1800px;
-			}
-		</style>
+	
 	</head>
 	<body onload="load()">
 
@@ -92,9 +43,10 @@
 				<a href="#about" data-transition="slide" >About</a>
 			</div>
 			<div data-role="content" data-theme="b">
-				<center><img src="assets/imgs/bdaLobsterDiver.png" title="Lobster Diver" height=200 width=300></center>
-				<p>Welcome to Bermuda's first lobster diving and spearfishing app! Click the menu button to see the rules associated with lobster diving and spearfishing.</p>
+				<center><img src="img/imgs/bdaLobsterDiver.png" title="Lobster Diver" height=200 width=300></center>
 				<br>
+				<p>Welcome to Bermuda's first lobster diving and spearfishing app! Click the menu button to see the rules associated with lobster diving and spearfishing.</p>
+				
 				<p>Click below to add either a new lobster or spearfishing catch!</p>
 				<center>
 					<a href="#newLobsterCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true" >Add Lobster</a>
@@ -106,6 +58,7 @@
 				<h4>Something's Developing</h4>
 			</div>
 		</div>
+		
 <!-- Fish Types -->		
 		<div id="fishTile" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
@@ -116,69 +69,40 @@
 				<p>Click on one of the fish below to get more information about the fish</p>
 				<ul data-role="listview" data-inset="true">
 					<li><a href="#fishDetail">
-						<img src="assets/fish/blackrockfish.JPG">
+						<img src="img/fish/blackrockfish.JPG">
 						<h2>Black Rockfish</h2>
-						<p>Min Length: 32 inches</p></a>
+						<p>Min Length: 32 inches</p>
+						<p>Bag Limit: 1 /day</p></a>
 					</li>
 					<li><a href="#">
-						<img src="assets/fish/coney.jpg">
+						<img src="img/fish/coney.jpg">
 						<h2>Coney</h2>
-						<p>Min Length: 16 inches</p></a>
+						<p>Min Length: 16 inches</p>
+						<p>Bag Limit: 3 /day</p></a>
 					</li>
 					<li><a href="#">
-						<img src="assets/fish/red_hind.jpg">
+						<img src="img/fish/red_hind.jpg">
 						<h2>Red Hind</h2>
-						<p>Min Length: 12 inches</p></a>
+						<p>Min Length: 12 inches</p>
+						<p>Bag Limit: 5 /day</p></a>
 					</li>
 					<li><a href="#">
-						<img src="assets/fish/graysby.jpg">
+						<img src="img/fish/graysby.jpg">
 						<h2>Graysby</h2>
-						<p>Min Length: 13 inches</p></a>
+						<p>Min Length: 13 inches</p>
+						<p>Bag Limit: 2 /day</p></a>
 					</li>
 					<li><a href="#">
-						<img src="assets/fish/amberjack.jpg">
+						<img src="img/fish/amberjack.jpg">
 						<h2>Amberjack</h2>
-						<p>Min Length: 8 inches</p></a>
+						<p>Min Length: 8 inches</p>
+						<p>Bag Limit: 3 /day</p></a>
 					</li>
 					<li><a href="#">
-						<img src="assets/fish/coney.jpg">
+						<img src="img/fish/coney.jpg">
 						<h2>Coney</h2>
-						<p>Min Length: 16 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/red_hind.jpg">
-						<h2>Red Hind</h2>
-						<p>Min Length: 12 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/graysby.jpg">
-						<h2>Graysby</h2>
-						<p>Min Length: 13 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/amberjack.jpg">
-						<h2>Amberjack</h2>
-						<p>Min Length: 8 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/coney.jpg">
-						<h2>Coney</h2>
-						<p>Min Length: 16 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/red_hind.jpg">
-						<h2>Red Hind</h2>
-						<p>Min Length: 12 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/graysby.jpg">
-						<h2>Graysby</h2>
-						<p>Min Length: 13 inches</p></a>
-					</li>
-					<li><a href="#">
-						<img src="assets/fish/amberjack.jpg">
-						<h2>Amberjack</h2>
-						<p>Min Length: 8 inches</p></a>
+						<p>Min Length: 16 inches</p>
+						<p>Bag Limit: 1 /day</p></a>
 					</li>
 				</ul>
 			</div>
@@ -203,7 +127,7 @@
 				<h1>Black Rockfish</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-				<img src="assets/fish/blackrockfish.JPG" title="Black Rock Fish">
+				<img src="img/fish/blackrockfish.JPG" title="Black Rock Fish">
 				<h2>Black Rockfish</h2>
 				<h4>Min Catch Length: 32 inches</h4>
 				<h4>Bag Limit: 1 per day</h4>
@@ -217,97 +141,111 @@
 		
 <!-- Add Fish -->		
 		<div id="newSpearCatch" data-role="page" data-theme="b">
-			<div id="menu" data-role="panel" data-position="left" data-display="push" data-theme="c">
-				<h1>Menu</h1>
-				
-			</div>
 			<div data-role="header" data-theme="b">
 				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
 				<h1>Spearfishing</h1>
-				
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>Congrats on your catch! Fill out the details below!</p>
-
-				<label for="fishType" class="select">Select Fish Species</label>
-				<select name="fishType" id="fishType">
-					<option value="1">Black rockfish</option>
-					<option value="2">Monkey rockfish</option>
-					<option value="6">Red hind</option>
-					<option value="7">Coney</option>
-					<option value="8">Barber</option>
-					<option value="11">Graysby</option>
-					<option value="120">Amberjack</option>
-					<option value="121">Bonita / Almaco jack</option>
-					<option value="122">Gwelly</option>
-					<option value="125">Goggle eye jack</option>
-					<option value="127">Steel head jack</option>
-					<option value="128">Other jacks</option>
-					<option value="230">Grey snapper</option>
-					<option value="231">Silk / Lane snapper</option>
-					<option value="232">Yellowtail snapper</option>
-					<option value="236">Other snappers</option>
-					<option value="340">Porgies</option>
-					<option value="341">Chub</option>
-					<option value="342">Hogfish</option>
-					<option value="344">Grunts</option>
-					<option value="345">Turbot</option>
-					<option value="346">Bream/ Pinfish</option>
-					<option value="other">Other - Please specify</option>
-				</select>
-				
-				<br>
-				<fieldset data-role="controlgroup" data-type="horizontal">
-						<legend>Area Caught:</legend>
-						<label for="select-h-2b">Select Vertical</label>
-						<select name="select-h-2b" id="select-h-2b">
-							<option value="#">Alpha</option>
-							<option value="#">Bravo</option>
-							<option value="#">Charlie</option>
-							<option value="#">Delta</option>
-							<option value="#">Echo</option>
-							<option value="#">Foxtrot</option>
-							<option value="#">Golf</option>
-							<option value="#">India</option>
-							<option value="#">Juliett</option>
-						</select>
-						
-						<label for="select-h-2a">Select Horizontal</label>
-						<select name="select-h-2a" id="select-h-2a">
-							<option value="#">3</option>
-							<option value="#">4</option>
-							<option value="#">5</option>
-							<option value="#">6</option>
-							<option value="#">7</option>
-							<option value="#">8</option>
-							<option value="#">9</option>
-							<option value="#">10</option>
-							<option value="#">11</option>
-							<option value="#">12</option>
-							<option value="#">13</option>
-							<option value="#">14</option>
-							<option value="#">15</option>
-						</select>
+				<form id="addFish">
+					<label for="fishType" class="select">Select Fish Species</label>
+					<select name="fishType" id="fishType">
+						<option value="4">Black rockfish</option>
+						<option value="5">Monkey rockfish</option>
+						<option value="6">Red hind</option>
+						<option value="7">Coney</option>
+						<option value="8">Barber</option>
+						<option value="9">Graysby</option>
+						<option value="10">Amberjack</option>
+						<option value="11">Bonita / Almaco jack</option>
+						<option value="12">Gwelly</option>
+						<option value="13">Goggle eye jack</option>
+						<option value="14">Steel head jack</option>
+						<option value="15">Other jacks</option>
+						<option value="16">Grey snapper</option>
+						<option value="17">Silk / Lane snapper</option>
+						<option value="18">Yellowtail snapper</option>
+						<option value="19">Other snappers</option>
+						<option value="20">Porgies</option>
+						<option value="21">Chub</option>
+						<option value="22">Hogfish</option>
+						<option value="23">Grunts</option>
+						<option value="24">Turbot</option>
+						<option value="25">Bream/ Pinfish</option>
+						<option value="26">Other - Please specify</option>
+					</select>
+					<br>
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<legend>Select how you want to enter the location</legend>
+								<input type="radio" name="radio-choice-b" id="radio-choice-c" value="map" checked="checked">
+								<label for="radio-choice-c">Map</label>
+								<input type="radio" name="radio-choice-b" id="radio-choice-d" value="home">
+								<label for="radio-choice-d">GPS</label>
+								<input type="radio" name="radio-choice-b" id="radio-choice-e" value="grid">
+								<label for="radio-choice-e">Grid</label>
 					</fieldset>
-					<p>OR<p/>
-				<a type="button" href="#islandMap" data-inline="true" data-icon="search" data-iconpos="left" data-rel="dialog">Select Area from Map</a>
-				<br><br>
-				<label for="length">Length (inches)</label>
-				<input type="number" name="length" id="text-basic" value="">
-				<br>
-				<label for="weight">Weight (pounds)</label>
-				<input type="number" name="weight" id="weight" value="">
-				<br>
-				<label for="date">Date Caught</label>
-				<input type="date" name="date" id="date" value="">
-				<br>
-				<label for="submit">Send:</label>
-				<button type="submit" id="submit">Submit</button>
+					
+					<br>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+							<legend>Area Caught:</legend>
+							<label for="fishGridV">Select Vertical</label>
+							<select name="fishGridV" id="fishGridV">
+								<option value="A">Alpha</option>
+								<option value="B">Bravo</option>
+								<option value="C">Charlie</option>
+								<option value="D">Delta</option>
+								<option value="E">Echo</option>
+								<option value="F">Foxtrot</option>
+								<option value="G">Golf</option>
+								<option value="H">Hotel</option>
+								<option value="I">India</option>
+								<option value="J">Juliett</option>
+							</select>
+							
+							<label for="fishGridH">Select Horizontal</label>
+							<select name="fishGridH" id="fishGridH">
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+							</select>
+						</fieldset>
+					<br>
+					<label for="fishLat">Latitude</label>
+					<input type="number" id="fishLat" name="fishLat" />
+					<label for="fishLong">Longitude</label>
+					<input type="number" id="fishLong" name="fishLong" />
+					<br>
+					<label for="fishLength">Length (inches)</label>
+					<input type="number" name="fishLength" id="fishLength" value="">
+					<br>
+					<label for="fishWeight">Weight (pounds)</label>
+					<input type="number" name="fishWeight" id="fishWeight" value="">
+					<br>
+					<label for="fishDate">Date Caught</label>
+					<input type="date" name="fishDate" id="fishDate" >
+					
+					<br>
+					<label for="fishNotes">Notes:</label>
+					<textarea cols="40" rows="8" name="fishNotes" id="fishNotes"></textarea>
+					<br>
+					<a data-role="button" id="submitFish" data-rel="dialog" href="#confirmFish">Save Fish</a>
+				</form>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h4>Something's Developing</h4>
 			</div>
 		</div>
+		
 
 <!-- Add Lobster -->		
 		<div id="newLobsterCatch" data-role="page" data-theme="b">
@@ -322,79 +260,199 @@
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>Congrats on your lobster catch! Fill out the details below!</p>
-				<form >
+					<form id="addLobster">
 					<label for="lobsterType" class="select">Select Lobster Species</label>
-					<select name="fishType" id="fishType">
-						<option value="spiny">Spiny Lobster</option>
-						<option value="slipper">Slipper Lobster</option>
-						<option value="guinea">Guinea Chicks</option>
+					<select name="lobsterType" id="lobsterType">
+						<option value="1">Spiny Lobster</option>
+						<option value="2">Slipper Lobster</option>
+						<option value="3">Guinea Chicks</option>
 					</select>
+					<br>
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+						<legend>Select how you want to enter the location</legend>
+								<input type="radio" name="radio-choice-b" id="radio-choice-c" value="map" checked="checked">
+								<label for="radio-choice-c">Map</label>
+								<input type="radio" name="radio-choice-b" id="radio-choice-d" value="home">
+								<label for="radio-choice-d">GPS</label>
+								<input type="radio" name="radio-choice-b" id="radio-choice-e" value="grid">
+								<label for="radio-choice-e">Grid</label>
+					</fieldset>
 					<br>
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<legend>Area Caught:</legend>
-						<label for="select-h-2b">Select Vertical</label>
-						<select name="select-h-2b" id="select-h-2b">
-							<option value="#">Alpha</option>
-							<option value="#">Bravo</option>
-							<option value="#">Charlie</option>
-							<option value="#">Delta</option>
-							<option value="#">Echo</option>
-							<option value="#">Foxtrot</option>
-							<option value="#">Golf</option>
-							<option value="#">India</option>
-							<option value="#">Juliett</option>
+						<label for="lobsterGridV">Select Vertical</label>
+						<select name="lobsterGridV" id="lobsterGridV">
+							<option value="A">Alpha</option>
+							<option value="B">Bravo</option>
+							<option value="C">Charlie</option>
+							<option value="D">Delta</option>
+							<option value="E">Echo</option>
+							<option value="F">Foxtrot</option>
+							<option value="G">Golf</option>
+							<option value="H">Hotel</option>
+							<option value="I">India</option>
+							<option value="J">Juliett</option>
 						</select>
 						
-						<label for="select-h-2a">Select Horizontal</label>
-						<select name="select-h-2a" id="select-h-2a">
-							<option value="#">3</option>
-							<option value="#">4</option>
-							<option value="#">5</option>
-							<option value="#">6</option>
-							<option value="#">7</option>
-							<option value="#">8</option>
-							<option value="#">9</option>
-							<option value="#">10</option>
-							<option value="#">11</option>
-							<option value="#">12</option>
-							<option value="#">13</option>
-							<option value="#">14</option>
-							<option value="#">15</option>
+						<label for="lobsterGridH">Select Horizontal</label>
+						<select name="lobsterGridH" id="lobsterGridH">
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
 						</select>
 					</fieldset>
-					<p>OR<p/>
-					<a type="button" href="#islandMap" data-inline="true" data-icon="search" data-iconpos="left" data-rel="dialog">Select Area from Map</a>
-									
+							
+					<label for="lobsterLat">Latitude</label>
+					<input type="number" id="lobsterLat" name="lobsterLat" />
+					<label for="lobsterLong">Longitude</label>
+					<input type="number" id="lobsterLong" name="lobsterLong" />
+								
 					<br>
 					<fieldset data-role="controlgroup">
 						<legend>Lobster Sex:</legend>
-							<input type="radio" name="lobsterSex" id="lobsterMale" value="male" checked="checked">
+							<input type="radio" name="lobsterSex" id="lobsterMale" value="Male" checked="checked">
 							<label for="lobsterMale">Male</label>
-							<input type="radio" name="lobsterSex" id="lobsterFemale" value="female">
+							<input type="radio" name="lobsterSex" id="lobsterFemale" value="Female">
 							<label for="lobsterFemale">Female</label>
 					</fieldset>
 					<br>
-					<label for="length">Length (inches)</label>
-					<select name="length" id="length">
-						<option value="1">3-5/8" - 4"</option>
-						<option value="2">4" - 5"</option>
-						<option value="3">5" - 6"</option>
-						<option value="4">6" - 7"</option>
-						<option value="5">7" - 8"</option>
-						<option value="6">8" & Up</option>
+					<label for="lobsterLength">Length (inches) <a href="#carapace" data-rel="dialog">(How to measure)</a></label>
+					<select name="lobsterLength" id="lobsterLength">
+						<option value="3.625">3-5/8" - 4"</option>
+						<option value="4">4" - 4-1/2"</option>
+						<option value="4.5">4-1/2" - 5"</option>
+						<option value="5">5" - 5-1/2"</option>
+						<option value="5.5">5-1/2" - 6"</option>
+						<option value="6">6" - 6-1/2"</option>
+						<option value="6.5">6-1/2" - 7"</option>
+						<option value="7">7" - 7-1/2"</option>
+						<option value="7.5">7-1/2" - 8"</option>
+						<option value="8">8" - 8-1/2"</option>
+						<option value="8.5">8-1/2" - 9"</option>
+						<option value="9">9" - 9-1/2"</option>
+						<option value="9.5">9-1/2" - 10"</option>
+						<option value="10">10" - 10-1/2"</option>
+						<option value="10.5">10-1/2" - 11"</option>
 					</select>
 					<br>
-					<label for="date">Date Caught</label>
-					<input type="date" name="date" id="date" value="">
+					<label for="lobsterDate">Date Caught</label>
+					<input type="date" name="lobsterDate" id="lobsterDate" value="">
 					<br>
+					<label for="lobsterNotes">Notes:</label>
+					<textarea cols="40" rows="8" name="lobsterNotes" id="lobsterNotes"></textarea>
 					<br>
-					<button type="submit" id="submit">Submit</button>
+					<a data-role="button" id="submitLobster" href="#confirmLobster" data-rel="dialog">Save Lobster</a>
 				</form>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h4>Something's Developing</h4>
 			</div>
 		</div>
+
+<!-- Confirm Lobster Catch Page -->		
+		<div id="confirmLobster" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>Save Catch?</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>Are you sure you filled out all the information and you want to save?</p>
+				<p>
+					<a href="#" data-rel="back" data-role="button" data-mini="true" data-inline="true">Cancel</a>
+					<a href="#home"  onclick="submitLobster();" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">Save Lobster</a>
+				</p>
+			</div>
+			<div data-role="footer" data-theme="b">
+			</div>
+		</div>
+
+<!-- Confirm Fish Catch Page -->		
+		<div id="confirmFish" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>Save Catch?</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>Are you sure you filled out all the information and you want to save?</p>
+				<p>
+					<a href="#" data-rel="back" data-role="button" data-mini="true" data-inline="true">Cancel</a>
+					<a href="#home"  onclick="submitFish();" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">Save Fish</a>
+				</p>
+			</div>
+			<div data-role="footer" data-theme="b">
+			</div>
+		</div>
+
+<!-- catchHistory Page-->	
+		<div id="catchHistory" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
+				<h1>Catch History</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>This is your catch history. Click on the Details button to show/hide information from the table.</p>
+				
+				<!--	
+				<h1>Storage Example</h1>
+		  			
+					<table id="myTable" border="1">
+						<tr>
+							<th>ID</th>
+							<th>Data</th>
+						</tr>
+					</table>
+				
+					<br>
+		  			<a href="" onclick="addLobster()" data-role="button">Add to DB</a>
+				-->	
+				<br>
+				
+					<table data-role="table" id="myTable" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
+					  <thead>
+						<tr>
+						  <th data-priority="1">Rank</th>
+						  <th data-priority="2">Species</th>
+						  <th data-priority="persist">Sex</th>
+						  <th data-priority="3">Length (in)</th>
+						  <th data-priority="4">Weight (lbs)</th>
+						  <th data-priority="5">Grid</th>
+						  <th data-priority="6">Latitude</th>
+						  <th data-priority="7">Longitude</th>
+						  <th data-priority="8">Date Caught</th>
+						  <th data-priority="9">Notes</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <th>1</th>
+						  <td><a href="#fishDetail" >Black Rock Fish</a></td>
+						  <th>Male</th>
+						  <th>38</th>
+						  <th>27</th>
+						  <th>E9</th>
+						  <th>32.2304</th>
+						  <th>64.8677</th>
+						  <th>2013-09-27</th>
+						  <th>Found swimming between the reef.</th>
+						</tr>
+	
+					  </tbody>
+					</table>
+				
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="b">
+				<h1>Something's Developing</h1>
+			</div>
+		</div>
+
 
 
 <!-- islandMap Page -->		
@@ -403,10 +461,9 @@
 				<h1>Map</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-			<!--	<img src="assets/imgs/islandmap.png" title="Map of Bermuda with Grid" />   -->
-				
+						
 				<div id="scroll">
-				    <img class="blue" src="assets/imgs/islandmap.png"/>
+				    <img class="blue" src="img/imgs/islandmap.png"/>
 				</div>
 
 			</div>
@@ -414,14 +471,30 @@
 			</div>
 		</div>
 		
+<!-- Lobster Lenght Page -->		
+		<div id="carapace" data-role="page" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>Carapace</h1>
+			</div>
+			<div data-role="content" data-theme="b">
+				<p>See the below image for where to measure the size of your lobster. Measure from where the tail starts to between the horns.</p>
+				<center>
+				    <img src="img/imgs/carapace.png"/>
+				</center>
+				<p>This <strong>must be</strong> no less than 3-5/8" in lenght. If it is, you need to throw it back and go find another one! (only if you are under your limit!)</p>	
+			</div>
+			<div data-role="footer" data-theme="b">
+			</div>
+		</div>
 		
+<!-- Island map grid page - for testing only -->		
 		<div id="islandMap2" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
 				<button data-close-btn="none">X</button>
 				<h1>Map2</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-				<!--<img src="assets/imgs/islandmap.png" title="Map of Bermuda with Grid" /> -->
+				<!--<img src="img/imgs/islandmap.png" title="Map of Bermuda with Grid" /> -->
 				<div class="ui-grid-d">
 					<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:40px">I3</div></div>
 					<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:40px">I6</div></div>
@@ -461,8 +534,6 @@
 			</div>
 		</div>
 		
-
-
 <!-- About Page-->	
 		<div id="about" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
@@ -499,79 +570,6 @@
 			</div>
 		</div>
 		
-<!-- catchHistory Page-->	
-		<div id="catchHistory" data-role="page" data-theme="b">
-			<div data-role="header" data-theme="b">
-				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
-				<h1>Catch History</h1>
-			</div>
-			<div data-role="content" data-theme="b">
-				<p>This is your catch history. Click on the Details button to show/hide information from the table.</p>
-				<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
-				  <thead>
-					<tr>
-					  <th data-priority="1">Rank</th>
-					  <th data-priority="persist">Fish Type</th>
-					  <th data-priority="2">Length</th>
-					  <th data-priority="3">Date</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <th>1</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Sept 27, 2013</td>
-					</tr>
-					 <th>2</th>
-					  <td><a href="#fishDetail" >Gold Fish</a></td>
-					  <td>32 in</td>
-					  <td>June 27, 2013</td>
-					</tr>
-					 <th>3</th>
-					  <td><a href="#fishDetail" >Fry</a></td>
-					  <td>3 in</td>
-					  <td>Aug 2, 2013</td>
-					</tr>
-					 <th>4</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Dec 27, 2013</td>
-					</tr>
-					 <th>5</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Sept 27, 2013</td>
-					</tr>
-					 <th>6</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Sept 27, 2013</td>
-					</tr>
-					 <th>7</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Sept 27, 2013</td>
-					</tr>
-					 <th>8</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Sept 27, 2013</td>
-					</tr>
-					 <th>9</th>
-					  <td><a href="#fishDetail" >Black Rock Fish</a></td>
-					  <td>38 in</td>
-					  <td>Sept 27, 2013</td>
-					</tr>
-				  </tbody>
-				</table>
-				
-			</div>
-			<div data-role="footer" data-position="fixed" data-theme="b">
-				<h1>Something's Developing</h1>
-			</div>
-		</div>
-
 <!-- Lobster Rules Page-->	
 		<div id="lobsterDivingRules" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
@@ -650,18 +648,14 @@
 				<p>Please sign in to your account</p>
 				<label for="email">Email</label>
 				<input type="text" name="email" id="email" placeholder="" value="">
-				
 				<label for="password">Password</label>
 				<input type="password" name="password" id="password" placeholder="" value="">
 				<br>
 				<label for="lobsterLicense">Lobster License#:</label>
 				<input type="number" name="lobsterLicense" id="lobsterLicense" placeholder="License Number" value="">
-				
 				<label for="spearfishingLicense">Spearfishing License#:</label>
 				<input type="number" name="spearfishingLicense" id="spearfishingLicense" placeholder="License Number" value="">
-				
-				
-				<button type="submit" id="submit">Sign In</button>
+				<button type="submit" id="submit">Sign In</button>	
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 			</div>
