@@ -6,7 +6,7 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.1">
 
-    <name>BDA Lobster & Spearfishing</name>
+    <name>BDA Lobster and Spearfishing</name>
 
     <description>
         Bermuda's Lobster Diving and Spearfishing App! Use this app to track your catches and submit your stats to the Department of Environmental Protection.
