@@ -71,7 +71,7 @@
 		    	document.getElementById("lobsterLong").value + '", "' +
 		    	document.getElementById("lobsterDate").value + '", "' +
 		    	document.getElementById("lobsterNotes").value + '")';
-		    	alert("here: " + sql);
+		    	//alert("here: " + sql);
 		    	tx.executeSql(sql);
 		    }
 		    
@@ -104,7 +104,7 @@
 		    	document.getElementById("fishLong").value + '", "' +
 		    	document.getElementById("fishDate").value + '", "' +
 		    	document.getElementById("fishNotes").value + '")';
-		    	alert("here: " + sql);
+		    	//alert("here: " + sql);
 		    	tx.executeSql(sql);
 		    }
 		    

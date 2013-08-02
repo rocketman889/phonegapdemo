@@ -6,7 +6,7 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.1">
 
-    <name>BDA Lobster and Spearfishing</name>
+    <name>BDA Lobster & Spearfishing</name>
 
     <description>
         Bermuda's Lobster Diving and Spearfishing App! Use this app to track your catches and submit your stats to the Department of Environmental Protection.
@@ -20,14 +20,11 @@
         Enable individual API permissions here.
         The "device" permission is required for the 'deviceready' event.
     -->
-    <feature name="http://api.phonegap.com/1.0/battery"/>
-	<feature name="http://api.phonegap.com/1.0/camera"/>
-	<feature name="http://api.phonegap.com/1.0/contacts"/>
+
 	<feature name="http://api.phonegap.com/1.0/file"/>
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
-	<feature name="http://api.phonegap.com/1.0/media"/>
-	<feature name="http://api.phonegap.com/1.0/network"/>
-	<feature name="http://api.phonegap.com/1.0/notification"/>	
+	<feature name="http://api.phonegap.com/1.0/storage"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>	
     <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
