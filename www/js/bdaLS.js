@@ -12,11 +12,15 @@
 			// Cordova is ready
 		    function onDeviceReady() {
 		       today();
+		       console.log("BOOM! loaded on ready!");
 		       var db = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
 		       db.transaction(populateDB, errorCB, successCB);
 		       //Create the fish database 
 		       //var spDB= window.openDatabase("Species", "1.0", "BDA Lobster Spear", 200000);
 		       //spDB.transaction(populateSpeciesDB, errorSpeciesCB, successSpeciesCB);
+		       
+		        $("#lobsterGPS").hide();
+		       
 		    }
 		    
 		     // Populate the database 
@@ -37,6 +41,7 @@
 		    
 		     // Query the database
 		    function queryDB(tx) {
+		    	console.log("getting previous data");
 		        tx.executeSql('SELECT * FROM CATCHES', [], querySuccess, errorCB);
 		    }
 		
@@ -44,6 +49,7 @@
 		    function querySuccess(tx, results) {
 		        var len = results.rows.length;
 		        for (var i=0; i<len; i++){
+		        	console.log("output. Len: " + i + " of " + len);
 		             addHTMLRow(results.rows.item(i).id, results.rows.item(i).species, results.rows.item(i).sex, results.rows.item(i).length, results.rows.item(i).weight, results.rows.item(i).grid, results.rows.item(i).lat, results.rows.item(i).long, results.rows.item(i).dateCaught, results.rows.item(i).notes);
 		        }
 		    }
@@ -128,8 +134,7 @@
 		    // Query the success callback
 		    function querySuccess2(tx, results) {
 		         var len = results.rows.length;
-		        for (var i=0; i<len; i++){
-		        	
+		        for (var i=0; i<len; i++){	
 		             addHTMLRow(results.rows.item(i).id, results.rows.item(i).species, results.rows.item(i).sex, results.rows.item(i).length, results.rows.item(i).weight, results.rows.item(i).grid, results.rows.item(i).lat, results.rows.item(i).long, results.rows.item(i).dateCaught, results.rows.item(i).notes);
 		        }
 		    }
@@ -146,7 +151,7 @@
 			
 			//Function adds rows to the catch table for the user.
 			function addHTMLRow(id, species, sex, length, weight, grid, latt, longg, date, notes)
-			{
+			{	
 				var x=document.getElementById('myTable').insertRow(-1);
 				var c1=x.insertCell(0);
 				var c2=x.insertCell(1);
@@ -168,16 +173,18 @@
 				c8.innerHTML=longg;
 				c9.innerHTML=date;
 				c10.innerHTML=notes;
+				
+				$("#myTable").table("refresh");
 			}
 			
 			//function autopopulates the date for the Add Lobster and Add Fish pages
 			function today() {
-			    var date = new Date().toISOString().substring(0, 10),
+			    var date1 = new Date().toISOString().substring(0, 10),
 			        field = document.querySelector('#lobsterDate');
-			    field.value = date;
-				 var date = new Date().toISOString().substring(0, 10),
+			    field.value = date1;
+				 var date2 = new Date().toISOString().substring(0, 10),
 			        field = document.querySelector('#fishDate');
-			    field.value = date;			
+			    field.value = date2;			
 			}
 			
 			//Function is called after the confirmation window for adding/saving a lobster
@@ -190,3 +197,24 @@
 				addFish();
 			}
 		
+		//Delete the database and re-instate it
+		function clearDatabase(){
+			today();
+		    var db = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+		    db.transaction(dropTable, errorCB, successCB);
+		}
+
+		function dropTable(tx){
+				tx.executeSql('DROP TABLE IF EXISTS CATCHES');
+		    	tx.executeSql('CREATE TABLE IF NOT EXISTS CATCHES (id INTEGER PRIMARY KEY AUTOINCREMENT, species, sex, length, weight, grid, lat, long, dateCaught, notes)');
+		}
+
+		function goodTableDrop(){
+			//Clear the history of catches table
+			successCB();
+			//Remove the table.
+			var table = document.getElementById("#myTable");
+			while(table.rows.length > 0) {
+			  table.deleteRow(0);
+			}
+		}
