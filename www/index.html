@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="favicon.ico">
 		<script src="js/jquery.js"></script>
 		<script src="js/bdaLS.js"></script>		
-	<!--	<script src="js/cordova.js"></script>	-->
+		<script src="js/cordova.js"></script>	
 		<script src="js/jquery.mobile-1.3.1.min.js"></script>
 		<script src="phonegap.js"></script>
 		
@@ -29,13 +29,15 @@
 				</ul>
 				<h1>Information</h1>
 				<ul data-role="listview" data-theme="c">
-					<li><a href="#islandMap">Island Maps</a></li>
-					<li><a href="#islandMap2">Island Map Grid</a></li>
-					<li><a href="#fishTile">Fish Types</a></li>
-					<li><a href="#lobsterDivingRules">Lobster Diving Rules</a></li>
-					<li><a href="#spearfishingRules">Spearfishing Rules</a></li>
+					<li><a href="#islandMap">Island Map</a></li>
+					<li><a href="#fishTile">Species Info</a></li>
 					<li><a href="#emergency">Emergency Details</a></li>
 					<li><a href="#mapSettings">Map Settings</a></li>
+				</ul>
+				<h1>Rules</h1>
+				<ul data-role="listview" data-theme="c">
+					<li><a href="#lobsterDivingRules">Lobster Diving Rules</a></li>
+					<li><a href="#spearfishingRules">Spearfishing Rules</a></li>
 				</ul>
 				<br>
 				<a href="#menu" data-role="button" data-rel="close">Close </a>
@@ -66,48 +68,13 @@
 		<div id="fishTile" data-role="page" data-theme="b">
 			<div data-role="header" data-theme="b">
 				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
-				<h1>Spearfishing</h1>
+				<h1>Species</h1>
 			</div>
 			<div data-role="content" data-theme="b">
-				<p>Click on one of the fish below to get more information about the fish</p>
-				<ul data-role="listview" data-inset="true">
-					<li><a href="#fishDetail">
-						<img src="img/fish/blackrockfish.JPG">
-						<h2>Black Rockfish</h2>
-						<p>Min Length: 32 inches</p>
-						<p>Bag Limit: 1 /day</p></a>
-					</li>
-					<li><a href="#">
-						<img src="img/fish/coney.jpg">
-						<h2>Coney</h2>
-						<p>Min Length: 16 inches</p>
-						<p>Bag Limit: 3 /day</p></a>
-					</li>
-					<li><a href="#">
-						<img src="img/fish/red_hind.jpg">
-						<h2>Red Hind</h2>
-						<p>Min Length: 12 inches</p>
-						<p>Bag Limit: 5 /day</p></a>
-					</li>
-					<li><a href="#">
-						<img src="img/fish/graysby.jpg">
-						<h2>Graysby</h2>
-						<p>Min Length: 13 inches</p>
-						<p>Bag Limit: 2 /day</p></a>
-					</li>
-					<li><a href="#">
-						<img src="img/fish/amberjack.jpg">
-						<h2>Amberjack</h2>
-						<p>Min Length: 8 inches</p>
-						<p>Bag Limit: 3 /day</p></a>
-					</li>
-					<li><a href="#">
-						<img src="img/fish/coney.jpg">
-						<h2>Coney</h2>
-						<p>Min Length: 16 inches</p>
-						<p>Bag Limit: 1 /day</p></a>
-					</li>
+				<p>Click on one of the fish below to get more information about the species</p>
+				<ul id="speciesList" data-role="listview" data-inset="true">
 				</ul>
+				
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h4>Something's Developing</h4>
@@ -129,13 +96,8 @@
 				<a href="#home" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
 				<h1>Black Rockfish</h1>
 			</div>
-			<div data-role="content" data-theme="b">
-				<img src="img/fish/blackrockfish.JPG" title="Black Rock Fish">
-				<h2>Black Rockfish</h2>
-				<h4>Min Catch Length: 32 inches</h4>
-				<h4>Bag Limit: 1 per day</h4>
-				<h4>Other information: Something interesting</h4>
-				<h4>Further Information here... :)</h4>	
+			<div  data-role="content" data-theme="b">
+				<div id="speciesParticulars"></div>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h4>Something's Developing</h4>
@@ -163,7 +125,7 @@
 				<p>Congrats on your catch! Fill out the details below!</p>
 				<form id="addFish">
 					<label for="fishType" class="select">Select Fish Species</label>
-					<select name="fishType" id="fishType">
+					<select name="fishType" data-theme="c" id="fishType">
 						<option value="4">Black rockfish</option>
 						<option value="5">Monkey rockfish</option>
 						<option value="6">Red hind</option>
@@ -189,21 +151,23 @@
 						<option value="26">Other - Please specify</option>
 					</select>
 					<br>
-					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-						<legend>Select how you want to enter the location</legend>
-								<input type="radio" name="radio-choice-b" id="radio-choice-c" value="map" checked="checked">
-								<label for="radio-choice-c">Map</label>
-								<input type="radio" name="radio-choice-b" id="radio-choice-d" value="home">
-								<label for="radio-choice-d">GPS</label>
-								<input type="radio" name="radio-choice-b" id="radio-choice-e" value="grid">
-								<label for="radio-choice-e">Grid</label>
-					</fieldset>
+					<center>
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<legend>Select how you want to enter the location</legend>
+								<input type="radio" name="fishRadio" id="fishGPSRadio" data-theme="c" onclick="hideForFishGPS();" value="home" checked="checked">
+								<label for="fishGPSRadio">GPS</label>
+								<input type="radio" name="fishRadio" id="fishMapRadio" data-theme="c" onclick="hideForFishMap();" value="map" >
+								<label for="fishMapRadio">Map</label>
+								<input type="radio" name="fishRadio" id="fishGridRadio" data-theme="c" onclick="hideForFishGrid();" value="grid">
+								<label for="fishGridRadio">Grid</label>
+						</fieldset>
+					</center>
 					
-					<br>
-					<fieldset data-role="controlgroup" data-type="horizontal">
+					<div id="fishGrid">
+						<fieldset data-role="controlgroup" align="center" data-type="horizontal">
 							<legend>Area Caught:</legend>
 							<label for="fishGridV">Select Vertical</label>
-							<select name="fishGridV" id="fishGridV">
+							<select name="fishGridV" data-theme="c" id="fishGridV">
 								<option value="A">Alpha</option>
 								<option value="B">Bravo</option>
 								<option value="C">Charlie</option>
@@ -217,7 +181,7 @@
 							</select>
 							
 							<label for="fishGridH">Select Horizontal</label>
-							<select name="fishGridH" id="fishGridH">
+							<select name="fishGridH" data-theme="c" id="fishGridH">
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
@@ -233,11 +197,16 @@
 								<option value="15">15</option>
 							</select>
 						</fieldset>
-					<br>
-					<label for="fishLat">Latitude</label>
-					<input type="number" id="fishLat" name="fishLat" />
-					<label for="fishLong">Longitude</label>
-					<input type="number" id="fishLong" name="fishLong" />
+					</div>
+					<div id="fishGPS">
+						<label for="fishLat">Latitude</label>
+						<input type="number" id="fishLat" name="fishLat" />
+						<label for="fishLong">Longitude</label>
+						<input type="number" id="fishLong" name="fishLong" />
+					</div>
+					<div id="fishMap">
+						<a type="button" data-theme="c" href="#">Select area from Map</a>
+					</div>
 					<br>
 					<label for="fishLength">Length (inches)</label>
 					<input type="number" name="fishLength" id="fishLength" value="">
@@ -252,7 +221,9 @@
 					<label for="fishNotes">Notes:</label>
 					<textarea cols="40" rows="8" name="fishNotes" id="fishNotes"></textarea>
 					<br>
-					<a href="#confirmFish" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Save Fish</a>
+					<center>
+						<a href="#confirmFish" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Save Fish</a>
+					</center>
 				</form>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
@@ -282,31 +253,46 @@
 					<a href="#" onclick="submitLobster();" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Save Lobster</a>
 				</div>
 			</div>
+			<div data-role="popup" id="measureLobster" data-overlay-theme="b" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Lobster Min Length</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<p>See the below image for where to measure the size of your lobster. Measure from where the tail starts to between the horns.</p>
+					<center>
+						<img src="img/imgs/carapace.png"/>
+					</center>
+					<p>This <strong>must be</strong> no less than 3-5/8" in lenght. If it is, you need to throw it back and go find another one! (only if you are under your limit!)</p>	
+					<center><a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="b">Got it!</a></center>
+				</div>
+			</div>
 			<div data-role="content" data-theme="b">
-				<p>Congrats on your lobster catch! Fill out the details below!</p>
+				<p id="congrats">Congrats on your lobster catch! Fill out the details below!</p>
 					<form id="addLobster">
 					<label for="lobsterType" class="select">Select Lobster Species</label>
-					<select name="lobsterType" id="lobsterType">
+					<select name="lobsterType" data-theme="c" id="lobsterType">
 						<option value="1">Spiny Lobster</option>
 						<option value="2">Slipper Lobster</option>
 						<option value="3">Guinea Chicks</option>
 					</select>
 					<br>
-					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-						<legend>Select how you want to enter the location</legend>
-								<input type="radio" name="radio-choice-b" id="lobsterRadioGPS" value="home" checked="checked">
-								<label for="radio-choice-d">GPS</label>
-								<input type="radio" name="radio-choice-b" id="lobsterMapRadio" value="map" >
-								<label for="radio-choice-c">Map</label>
-								<input type="radio" name="radio-choice-b" id="lobsterGridRadio" value="grid">
-								<label for="radio-choice-e">Grid</label>
-					</fieldset>
+					<center>
+						<fieldset data-role="controlgroup" data-theme="c" data-type="horizontal" data-mini="true">
+							<legend>Select how you want to enter the location</legend>
+									<input type="radio" name="lobsterRadio" id="lobsterGPSRadio" data-theme="c" onclick="hideForLobsterGPS();" value="home" checked="checked">
+									<label for="lobsterGPSRadio">GPS</label>
+									<input type="radio" name="lobsterRadio" id="lobsterMapRadio" data-theme="c" onclick="hideForLobsterMap();" value="map" >
+									<label for="lobsterMapRadio">Map</label>
+									<input type="radio" name="lobsterRadio" id="lobsterGridRadio" data-theme="c" onclick="hideForLobsterGrid();" value="grid">
+									<label for="lobsterGridRadio">Grid</label>
+						</fieldset>
+					</center>
 					<br>
 					<div id="lobsterGrid">
 						<fieldset data-role="controlgroup" data-type="horizontal">
 						<legend>Area Caught:</legend>
 						<label for="lobsterGridV">Select Vertical</label>
-						<select name="lobsterGridV" id="lobsterGridV">
+						<select name="lobsterGridV" data-theme="c" id="lobsterGridV">
 							<option value="A">Alpha</option>
 							<option value="B">Bravo</option>
 							<option value="C">Charlie</option>
@@ -320,7 +306,7 @@
 						</select>
 						
 						<label for="lobsterGridH">Select Horizontal</label>
-						<select name="lobsterGridH" id="lobsterGridH">
+						<select name="lobsterGridH" data-theme="c" id="lobsterGridH">
 							<option value="3">3</option>
 							<option value="4">4</option>
 							<option value="5">5</option>
@@ -337,26 +323,26 @@
 						</select>
 					</fieldset>
 					</div>
-					<div id="lobsterGPS" name="lobsterGPS">		
+					<div id="lobsterGPS" >		
 						<label for="lobsterLat">Latitude</label>
-						<input type="number" id="lobsterLat" name="lobsterLat" />
+						<input type="number" data-theme="c" id="lobsterLat" name="lobsterLat" />
 						<label for="lobsterLong">Longitude</label>
-						<input type="number" id="lobsterLong" name="lobsterLong" />
+						<input type="number" data-theme="c" id="lobsterLong" name="lobsterLong" />
 					</div>
 					<div id="lobsterMap">
-						<a type="button" href="#">Select area from Map</a>
+						<a data-theme="c" type="button" href="#">Select area from Map</a>
 					</div>			
 					<br>
 					<fieldset data-role="controlgroup">
 						<legend>Lobster Sex:</legend>
-							<input type="radio" name="lobsterSex" id="lobsterMale" value="Male" checked="checked">
+							<input type="radio" data-theme="c" name="lobsterSex" id="lobsterMale" value="Male" checked="checked">
 							<label for="lobsterMale">Male</label>
-							<input type="radio" name="lobsterSex" id="lobsterFemale" value="Female">
+							<input type="radio" data-theme="c" name="lobsterSex" id="lobsterFemale" value="Female">
 							<label for="lobsterFemale">Female</label>
 					</fieldset>
 					<br>
-					<label for="lobsterLength">Length (inches) <a href="#carapace" data-rel="dialog">(How to measure)</a></label>
-					<select name="lobsterLength" id="lobsterLength">
+					<label for="lobsterLength">Length (inches) <a href="#measureLobster" data-mini="true" data-rel="popup" data-theme="c" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">(How to measure)</a></label>
+					<select name="lobsterLength" data-theme="c" id="lobsterLength">
 						<option value="3.625">3-5/8" - 4"</option>
 						<option value="4">4" - 4-1/2"</option>
 						<option value="4.5">4-1/2" - 5"</option>
@@ -380,7 +366,9 @@
 					<label for="lobsterNotes">Notes:</label>
 					<textarea cols="40" rows="8" name="lobsterNotes" id="lobsterNotes"></textarea>
 					<br>
-					<a href="#confirmLobster" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Save Lobster</a>
+					<center>
+						<a href="#confirmLobster" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Save Lobster</a>
+					</center>
 				</form>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
@@ -410,11 +398,10 @@
 			<div data-role="content" data-theme="b">
 				<p>This is your catch history. Click on the Details button to show/hide information from the table.</p>
 				<br>
-				
-					<table data-role="table" id="myTable"  data-column-btn-text="Options" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
+					<table data-role="table" id="myTable"  data-column-btn-text="Details" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
 					  <thead>
 						<tr>
-						  <th data-priority="2">Rank</th>
+						  <th data-priority="persist">Rank</th>
 						  <th data-priority="persist">Species</th>
 						  <th data-priority="4">Sex</th>
 						  <th data-priority="3">Length (in)</th>
@@ -422,7 +409,7 @@
 						  <th data-priority="5">Grid</th>
 						  <th data-priority="5">Latitude</th>
 						  <th data-priority="5">Longitude</th>
-						  <th data-priority="3">Date Caught</th>
+						  <th data-priority="1">Date Caught</th>
 						  <th data-priority="5">Notes</th>
 						</tr>
 					  </thead>
@@ -430,7 +417,6 @@
 						<tr></tr>
 					  </tbody>
 					</table>
-				
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h1>Something's Developing</h1>
@@ -450,22 +436,6 @@
 				    <img class="blue" src="img/imgs/islandmap.png"/>
 				</div>
 
-			</div>
-			<div data-role="footer" data-theme="b">
-			</div>
-		</div>
-		
-<!-- Lobster Lenght Page -->		
-		<div id="carapace" data-role="page" data-theme="b">
-			<div data-role="header" data-theme="b">
-				<h1>Carapace</h1>
-			</div>
-			<div data-role="content" data-theme="b">
-				<p>See the below image for where to measure the size of your lobster. Measure from where the tail starts to between the horns.</p>
-				<center>
-				    <img src="img/imgs/carapace.png"/>
-				</center>
-				<p>This <strong>must be</strong> no less than 3-5/8" in lenght. If it is, you need to throw it back and go find another one! (only if you are under your limit!)</p>	
 			</div>
 			<div data-role="footer" data-theme="b">
 			</div>
@@ -541,12 +511,30 @@
 				<h1>Emergency Info</h1>
 			</div>
 			<div data-role="content" data-theme="b">
+				<h2>Marine Radio Channels</h2>
+				<p>Test Channel for radio: 07 International</p>
+				<h3>Distress Call</h3>
+					<p>Emergency Radio Channel: 16 International</p>
+					<h4>Calling Procedures</h4>
+						<h5>MAYDAY, MAYDAY, MAYDAY - Immediate danger for persons of ship. e.g. sinking</h5>
+						<h5>PAN-PAN, PAN-PAN, PAN-PAN - Urgent message concerning safety of a person or ship. e.g. medical emergency</h5>
+						<ul>
+							<li>Give vessel name and call sign</li>
+							<li>State position of vessel</li>
+							<li>Describe nature of emergency</li>
+						</ul>
+					<h4>Other Signals</h4>
+					<ul>
+						<li>Arm Signal (Arms extended to side, wave up and down)</li>
+						<li>Sound Signal (Continuous horn, bell, or whistle)</li>
+						<li>Flares (Hand-held, Parachute rocket, Bouyant or orange smoke)</li>
+						<li>Dye Marker</li>
+						<li>Flashlight (SOS - short short short Long Long Long short short short</li>
+					</ul>					
 				<h2>Telephone Numbers</h2>
 				<p>Harbour Radio: (441) 295-XXXX</p>
 				<p>King Edward Memorial Hospital: (441) 295-XXXX</p>
-				<h2>Radio Channels</h2>
-				<p>Test Channel for radio: 17</p>
-				<p>Emergency Radio Channel: 16</p>
+				
 				
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">

@@ -7,6 +7,7 @@
 
   // Wait for Cordova to load
 		    document.addEventListener("deviceready", onDeviceReady, false);
+		   
 			
 //Create the catch DB if not already created
 			// Cordova is ready
@@ -16,13 +17,117 @@
 		       var db = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
 		       db.transaction(populateDB, errorCB, successCB);
 		       //Create the fish database 
-		       //var spDB= window.openDatabase("Species", "1.0", "BDA Lobster Spear", 200000);
-		       //spDB.transaction(populateSpeciesDB, errorSpeciesCB, successSpeciesCB);
-		       
-		        $("#lobsterGPS").hide();
-		       
+		       var spDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+		       spDB.transaction(populateSpeciesDB, errorSpeciesCB, successSpeciesCB);
+		      
+		      //Make the interface a bit pretty and UI easier to use
+		      hideForLobsterGPS();
+		      hideForFishGPS(); 
 		    }
 		    
+		    
+//Species Database		    
+		     // Populate the database of all the species.
+		     //Need to make this a one time thing
+		    function populateSpeciesDB(tx) {
+		        tx.executeSql('DROP TABLE IF EXISTS SPECIES');
+		    	tx.executeSql('CREATE TABLE IF NOT EXISTS SPECIES (sID INTEGER PRIMARY KEY AUTOINCREMENT, depID, speciesName, type, bagLimit, minLength,  notes)');
+		        tx.executeSql('INSERT INTO SPECIES ( depID, speciesName, type, bagLimit, minLength,  notes) VALUES  ("SP", "Spiny Lobster",    "l", "2", "3.635", "The are spiny little buggers!")');
+		     	tx.executeSql('INSERT INTO SPECIES ( depID, speciesName, type, bagLimit, minLength,  notes) VALUES  ("SL", "Slipper Lobster",  "l", "2", "3", "Wear them on your feet!")');
+		     	tx.executeSql('INSERT INTO SPECIES ( depID, speciesName, type, bagLimit, minLength,  notes) VALUES  ("GC", "Guinea Chick",     "l", "2", "3", "hello chickas!")');
+		     	tx.executeSql('INSERT INTO SPECIES ( depID, speciesName, type, bagLimit, minLength,  notes) VALUES  ("1", "Black Rockfish",    "f", "1", "37", "You find them in the rocks!")');
+		     	tx.executeSql('INSERT INTO SPECIES ( depID, speciesName, type, bagLimit, minLength,  notes) VALUES  ("2", "Monkey Rockfish",   "f", "2", "32", "Catch them with banannas!")');  
+		    }
+		    
+		     // If DB was created, then load the saved results into the catch table
+		    function successSpeciesCB() {
+		    	var spDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+		        spDB.transaction(querySpeciesDB, errorSpeciesCB);
+		        console.log("Species DB created successfully");
+		    }
+		    
+		     // Query the database
+		    function querySpeciesDB(tx) {
+		    	console.log("loading species list...");
+		        tx.executeSql('SELECT * FROM SPECIES', [], querySpeciesSuccess, errorSpeciesCB);
+		    }
+		
+		    // Load the database into the catch table
+		    function querySpeciesSuccess(tx, results) {
+		        var len = results.rows.length;
+		        console.log("Found " + len + " species in the database!");
+		        for (var i=0; i<len; i++){
+		        	console.log("Specie ID: " + results.rows.item(i).sID);
+		             addToSpeciesList(results.rows.item(i).sID, results.rows.item(i).speciesName, results.rows.item(i).bagLimit, results.rows.item(i).minLength);
+		        }
+		    }
+		    
+		     // Transaction error callback
+		    function errorSpeciesCB(err) {
+		        console.log("Error in Species: "+err.code);
+		    }
+		    
+		    //Function adds rows to the catch table for the user.
+			function addToSpeciesList(id, speciesName, bagLimit, minLength)
+			{	
+				var list = document.getElementById('#speciesList');
+				var buildList = '<li><a onclick="fishDetail(' + id + ');" href="#fishDetail">'
+				+ '<img src="img/fish/' + id + '.png">' 
+				+ '<h2>' + speciesName+'</h2>'
+				+ '<p>Min Length: ' + minLength + ' inches</p>'
+				+ '<p>Bag Limit: ' + bagLimit + ' per day</p>'
+				+ '</a></li>';
+				
+				console.log("JQ: " + buildList);
+						
+				$('#speciesList').append(buildList).trigger("create");	
+				$('#speciesList:visible').listview('refresh');
+		
+			}
+
+//Fish Details Page			
+			//Onclick function that handles when a user clicks on a particular fish, it will update the fish details page
+			function fishDetail(sID){
+				//$("#speciesParticulars").html("<br>"); //clear the div first
+				var spDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);			
+				spDB.transaction(function(tx){ querySpeciesDetails(tx, sID) }, errorSpeciesCB);
+		        console.log("Fetching fish info for id: " + sID);
+			}
+			
+			 // Query the database for a particular fish's details
+		    function querySpeciesDetails(tx, sID) {
+		    	var query = 'SELECT * FROM SPECIES WHERE sID="' + sID + '"'
+		    	console.log("In query: " + query);
+		        tx.executeSql(query, [], querySpeciesDetailsGood, errorSpeciesCB);
+		    }
+		    
+			 // Load the database into the catch table
+		    function querySpeciesDetailsGood(tx, results) {
+		        var len = results.rows.length;
+		        console.log("Found " + len + " species in the database!");
+		        for (var i=0; i<len; i++){
+		        	console.log("Look up Specie ID: " + results.rows.item(i).sID + ' name: ' + results.rows.item(i).speciesName);
+		            buildSpeciesDiv(results.rows.item(i).sID, results.rows.item(i).speciesName, results.rows.item(i).bagLimit, results.rows.item(i).minLength, results.rows.item(i).notes);
+		        }
+		    }	    
+			
+			function buildSpeciesDiv(sID, speciesName, bagLimit, minLength,  notes){
+				
+				var newDetails = '<img src="img/fish/' + sID + '.png" title="' + speciesName + '">' 
+				+ '<h2>' + speciesName+'</h2>'
+				+ '<h4>Min Length: ' + minLength + ' inches</h4>'
+				+ '<h4>Bag Limit: ' + bagLimit + ' per day</h4>'
+				+ '<h4>Details:</h4>'
+				+ '<p>' + notes + '</p>';
+				
+				console.log("JQ: " + newDetails);
+				$("#speciesParticulars").html(newDetails);
+				//document.getElementById("#speciesParticulars").innerHTML=newDetails;
+				
+			}
+			
+			
+//Catch Table database		
 		     // Populate the database 
 		    function populateDB(tx) {
 		      //  tx.executeSql('DROP TABLE IF EXISTS CATCHES');
@@ -62,10 +167,10 @@
 		    }
 		    
 		    function addLobsterRow(tx) {
-		    	var sexOfLobster = "female";
+		    	var sexOfLobster = "Female";
 				if(document.getElementById("lobsterMale").checked)
 				{
-					sexOfLobster = "male";
+					sexOfLobster = "Male";
 				}
 		    	var sql = 'INSERT INTO CATCHES (species, sex, length, weight, grid, lat, long, dateCaught, notes) VALUES ("' + 
 		    	document.getElementById("lobsterType").value + '", "' + 
@@ -148,7 +253,7 @@
 		        console.log("Error at ondevice load: "+err.code);
 		    }
 		    
-			
+//Catch Table			
 			//Function adds rows to the catch table for the user.
 			function addHTMLRow(id, species, sex, length, weight, grid, latt, longg, date, notes)
 			{	
@@ -218,3 +323,37 @@
 			  table.deleteRow(0);
 			}
 		}
+		
+		function hideForLobsterGPS(){
+			$("#lobsterMap").hide();
+			$("#lobsterGPS").show();
+			$("#lobsterGrid").hide();
+		}
+		function hideForLobsterMap(){
+			$("#lobsterMap").show();
+			$("#lobsterGPS").hide();
+			$("#lobsterGrid").hide();
+		}
+		function hideForLobsterGrid(){
+			$("#lobsterMap").hide();
+			$("#lobsterGPS").hide();
+			$("#lobsterGrid").show();
+		}
+		
+		function hideForFishGPS(){
+			$("#fishMap").hide();
+			$("#fishGPS").show();
+			$("#fishGrid").hide();
+		}
+		function hideForFishMap(){
+			$("#fishMap").show();
+			$("#fishGPS").hide();
+			$("#fishGrid").hide();
+		}
+		function hideForFishGrid(){
+			$("#fishMap").hide();
+			$("#fishGPS").hide();
+			$("#fishGrid").show();
+		}
+		
+		
