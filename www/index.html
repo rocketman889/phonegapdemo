@@ -42,6 +42,366 @@
 				<br>
 				<a href="#menu" data-role="button" data-rel="close">Close </a>
 			</div>
+<!-- Dialog Style 1 -->			
+			<div data-role="popup" id="addLobster1" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Type?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">What type did you catch?</h3>
+					<br>
+					<select name="lobsterType" data-theme="c" id="lobsterType">
+						<option value="1">Spiny Lobster</option>
+						<option value="2">Slipper Lobster</option>
+						<option value="3">Guinea Chicks</option>
+					</select>
+					<br>
+					<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+					<a href="#addLobster2" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+			<div data-role="popup" id="addLobster2" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Size?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">How big is/was the lobster? Not sure where to measure?</h3>
+					 <a href="#measureLobster" data-mini="true" data-rel="popup" data-theme="c" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">How to measure</a>
+					<select name="lobsterLength" data-theme="c" id="lobsterLength">
+						<option value="3.625">3-5/8" - 4"</option>
+						<option value="4">4" - 4-1/2"</option>
+						<option value="4.5">4-1/2" - 5"</option>
+						<option value="5">5" - 5-1/2"</option>
+						<option value="5.5">5-1/2" - 6"</option>
+						<option value="6">6" - 6-1/2"</option>
+						<option value="6.5">6-1/2" - 7"</option>
+						<option value="7">7" - 7-1/2"</option>
+						<option value="7.5">7-1/2" - 8"</option>
+						<option value="8">8" - 8-1/2"</option>
+						<option value="8.5">8-1/2" - 9"</option>
+						<option value="9">9" - 9-1/2"</option>
+						<option value="9.5">9-1/2" - 10"</option>
+						<option value="10">10" - 10-1/2"</option>
+						<option value="10.5">10-1/2" - 11"</option>
+					</select>
+					<br>
+					<a href="#addLobster1"  data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-theme="c">Previous</a>
+					<a href="#addLobster3" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+			<div data-role="popup" id="addLobster3" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Sex?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Not if you want some...Is the lobster male or female?</h3>
+					<a href="#whatIsTheLobsterSex" data-mini="true" data-rel="popup" data-theme="c" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">How to tell</a>
+					<fieldset data-role="controlgroup">
+							<input type="radio" data-theme="c" name="lobsterSex" id="lobsterMale" value="Male" checked="checked">
+							<label for="lobsterMale">Male</label>
+							<input type="radio" data-theme="c" name="lobsterSex" id="lobsterFemale" value="Female">
+							<label for="lobsterFemale">Female</label>
+					</fieldset>
+					<br>
+					<a href="#addLobster2" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-theme="c">Previous</a>
+					<a href="#addLobster4" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+			<div data-role="popup" id="addLobster4" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Location</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Are you sure you want to save?</h3>
+					<fieldset data-role="controlgroup" data-theme="c" data-type="horizontal" data-mini="true">
+							<legend>Select how you want to enter the location</legend>
+									<input type="radio" name="lobsterRadio" id="lobsterGPSRadio" data-theme="c" onclick="hideForLobsterGPS();" value="home" checked="checked">
+									<label for="lobsterGPSRadio">GPS</label>
+									<input type="radio" name="lobsterRadio" id="lobsterMapRadio" data-theme="c" onclick="hideForLobsterMap();" value="map" >
+									<label for="lobsterMapRadio">Map</label>
+									<input type="radio" name="lobsterRadio" id="lobsterGridRadio" data-theme="c" onclick="hideForLobsterGrid();" value="grid">
+									<label for="lobsterGridRadio">Grid</label>
+						</fieldset>
+					</center>
+					<br>
+					<div id="lobsterGrid">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>Area Caught:</legend>
+						<label for="lobsterGridV">Select Vertical</label>
+						<select name="lobsterGridV" data-theme="c" id="lobsterGridV">
+							<option value="A">Alpha</option>
+							<option value="B">Bravo</option>
+							<option value="C">Charlie</option>
+							<option value="D">Delta</option>
+							<option value="E">Echo</option>
+							<option value="F">Foxtrot</option>
+							<option value="G">Golf</option>
+							<option value="H">Hotel</option>
+							<option value="I">India</option>
+							<option value="J">Juliett</option>
+						</select>
+						
+						<label for="lobsterGridH">Select Horizontal</label>
+						<select name="lobsterGridH" data-theme="c" id="lobsterGridH">
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+						</select>
+					</fieldset>
+					</div>
+					<div id="lobsterGPS" >		
+						<label for="lobsterLat">Latitude</label>
+						<input type="number" data-theme="c" id="lobsterLat" name="lobsterLat" />
+						<label for="lobsterLong">Longitude</label>
+						<input type="number" data-theme="c" id="lobsterLong" name="lobsterLong" />
+					</div>
+					<div id="lobsterMap">
+						<a data-theme="c" type="button" href="#">Select area from Map</a>
+					</div>			
+					<br>
+					<a href="#addLobster3" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-theme="c">Previous</a>
+					<a href="#addLobster5" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+				<div data-role="popup" id="addLobster5" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Date?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Change the date of the catch if you did not catch the lobster today?</h3>
+					<label for="lobsterDate">Date Caught</label>
+					<input type="date" name="lobsterDate" id="lobsterDate" value="">
+					<br>
+					<a href="#addLobster4" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-theme="c">Previous</a>
+					<a href="#addLobster6" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+				<div data-role="popup" id="addLobster6" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Any Notes?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Do you want to make any notes about this catch or hole?</h3>
+					<br>
+					<label for="lobsterNotes">Notes:</label>
+					<textarea cols="40" rows="8" name="lobsterNotes" id="lobsterNotes"></textarea>
+					<br>
+					<a href="#addLobster5" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-theme="c">Previous</a>
+					<a onclick="alert('Saved!');" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Save Lobster</a>
+				</div>
+			</div>
+<!-- Dialog Style 2 with photos -->
+
+			<div data-role="popup" id="addLobster11" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Type?</h1>
+				</div>
+				<div data-role="content" data-theme="c" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">What type of Lobster?</h3>
+					<br>
+					<ul data-role="listview" data-inset="true">
+						<li><a href="#addLobster22" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">
+							<img src="img/fish/1.png">
+							<h2>Spiny Lobster</h2>
+							<p>Bag Limit: 2 per day</p></a>
+						</li>
+						<li><a href="#addLobster22"  data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">
+							<img src="img/fish/2.png">
+							<h2>Slipper Lobster</h2>
+							<p>Bag Limit: 2 per day</p></a>
+						</li>
+						<li><a href="#addLobster22"  data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">
+							<img src="img/fish/3.png">
+							<h2>Guinea Chicks</h2>
+							<p>Bag Limit: 2 per day</p></a>
+						</li>
+					</ul>
+					<br>
+					<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="c">Cancel</a>
+				</div>
+			</div>
+			<div data-role="popup" id="addLobster22" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Size?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Size does matter...How big is/was the lobster? Not sure where to measure?</h3>
+					 <a href="#measureLobster22" data-mini="true" data-rel="popup" data-theme="c" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">How to measure</a>
+					
+					<select name="lobsterLength" data-theme="c" id="lobsterLength">
+						<option value="3.625">3-5/8" - 4"</option>
+						<option value="4">4" - 4-1/2"</option>
+						<option value="4.5">4-1/2" - 5"</option>
+						<option value="5">5" - 5-1/2"</option>
+						<option value="5.5">5-1/2" - 6"</option>
+						<option value="6">6" - 6-1/2"</option>
+						<option value="6.5">6-1/2" - 7"</option>
+						<option value="7">7" - 7-1/2"</option>
+						<option value="7.5">7-1/2" - 8"</option>
+						<option value="8">8" - 8-1/2"</option>
+						<option value="8.5">8-1/2" - 9"</option>
+						<option value="9">9" - 9-1/2"</option>
+						<option value="9.5">9-1/2" - 10"</option>
+						<option value="10">10" - 10-1/2"</option>
+						<option value="10.5">10-1/2" - 11"</option>
+					</select>
+					<br>
+					<a href="#addLobster11"  data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-transition="flow" data-rel="back" data-theme="c">Previous</a>
+					<a href="#addLobster33" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+			<div data-role="popup" id="addLobster33" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Sex?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Not if you want some...Is the lobster male or female?</h3>
+					<a href="#whatIsTheLobsterSex" data-mini="true" data-rel="popup" data-theme="c" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">How to tell</a>
+					<fieldset data-role="controlgroup">
+						<legend>Lobster Sex:</legend>
+							<input type="radio" data-theme="c" name="lobsterSex" id="lobsterMale" value="Male" checked="checked">
+							<label for="lobsterMale">Male</label>
+							<input type="radio" data-theme="c" name="lobsterSex" id="lobsterFemale" value="Female">
+							<label for="lobsterFemale">Female</label>
+					</fieldset>
+					<br>
+					<a href="#addLobster22" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-transition="flow" data-rel="back" data-theme="c">Previous</a>
+					<a href="#addLobster44" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+			<div data-role="popup" id="addLobster44" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Location</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Are you sure you want to save?</h3>
+					<fieldset data-role="controlgroup" data-theme="c" data-type="horizontal" data-mini="true">
+							<legend>Select how you want to enter the location</legend>
+									<input type="radio" name="lobsterRadio" id="lobsterGPSRadio" data-theme="c" onclick="hideForLobsterGPS();" value="home" checked="checked">
+									<label for="lobsterGPSRadio">GPS</label>
+									<input type="radio" name="lobsterRadio" id="lobsterMapRadio" data-theme="c" onclick="hideForLobsterMap();" value="map" >
+									<label for="lobsterMapRadio">Map</label>
+									<input type="radio" name="lobsterRadio" id="lobsterGridRadio" data-theme="c" onclick="hideForLobsterGrid();" value="grid">
+									<label for="lobsterGridRadio">Grid</label>
+						</fieldset>
+					</center>
+					<br>
+					<div id="lobsterGrid">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>Area Caught:</legend>
+						<label for="lobsterGridV">Select Vertical</label>
+						<select name="lobsterGridV" data-theme="c" id="lobsterGridV">
+							<option value="A">Alpha</option>
+							<option value="B">Bravo</option>
+							<option value="C">Charlie</option>
+							<option value="D">Delta</option>
+							<option value="E">Echo</option>
+							<option value="F">Foxtrot</option>
+							<option value="G">Golf</option>
+							<option value="H">Hotel</option>
+							<option value="I">India</option>
+							<option value="J">Juliett</option>
+						</select>
+						
+						<label for="lobsterGridH">Select Horizontal</label>
+						<select name="lobsterGridH" data-theme="c" id="lobsterGridH">
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+						</select>
+					</fieldset>
+					</div>
+					<div id="lobsterGPS" >		
+						<label for="lobsterLat">Latitude</label>
+						<input type="number" data-theme="c" id="lobsterLat" name="lobsterLat" />
+						<label for="lobsterLong">Longitude</label>
+						<input type="number" data-theme="c" id="lobsterLong" name="lobsterLong" />
+					</div>
+					<div id="lobsterMap">
+						<a data-theme="c" type="button" href="#">Select area from Map</a>
+					</div>			
+					<br>
+					<a href="#addLobster33" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-transition="flow" data-theme="c">Previous</a>
+					<a href="#addLobster55" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+				
+			<div data-role="popup" id="measureLobster22" data-overlay-theme="b" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Lobster Min Length</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<p>See the below image for where to measure the size of your lobster. Measure from where the tail starts to between the horns.</p>
+					<center>
+						<img src="img/imgs/carapace.png"/>
+					</center>
+					<p>This <strong>must be</strong> no less than 3-5/8" in lenght. If it is, you need to throw it back and go find another one! (only if you are under your limit!)</p>	
+					<center><a href="#addLobster22" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-transition="flow" data-rel="back" data-theme="b">Got it!</a></center>
+				</div>
+			</div>
+			<div data-role="popup" id="whatIsTheLobsterSex" data-overlay-theme="b" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Sex of the Lobster</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<p>If the lobster makes a lot of noise, it is most likely a female...</p>
+					<p>If that isn't enough, refer to the photo below. On a male, the last pair of legs are straight, but on a female they have an extra bit that is used for digging. Also, the females have two rows of swimmerets (leaf like things on the tail) while males only have one.</p>
+					<center>
+						<img src="img/imgs/differencesInLobsterSex.png" style="width:80%;"/>
+					</center>
+					<p>If a female has eggs, you <strong>must</strong> release her back! It is an offense to take egg-bearing females.</p>	
+					<center><a href="#addLobster33" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-transition="flow" data-rel="back" data-theme="b">Got it!</a></center>
+				</div>
+			</div>
+			</div>
+				<div data-role="popup" id="addLobster55" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Date?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Change the date of the catch if you did not catch the lobster today?</h3>
+					<label for="lobsterDate">Date Caught</label>
+					<input type="date" name="lobsterDate" id="lobsterDate" value="">
+					<br>
+					<a href="#addLobster44" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-transition="flow" data-theme="c">Previous</a>
+					<a href="#addLobster66" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Next</a>
+				</div>
+			</div>
+				<div data-role="popup" id="addLobster66" data-overlay-theme="a" data-theme="b" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="b" class="ui-corner-top">
+					<h1>Any Notes?</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Do you want to make any notes about this catch or hole?</h3>
+					<br>
+					<label for="lobsterNotes">Notes:</label>
+					<textarea cols="40" rows="8" name="lobsterNotes" id="lobsterNotes"></textarea>
+					<br>
+					<a href="#addLobster55" data-role="button" data-rel="popup" data-position-to="window" data-inline="true" data-rel="back" data-transition="flow" data-theme="c">Previous</a>
+					<a onclick="alert('Saved!');" data-role="button" data-rel="popup" data-position-to="window" data-inline="true"  data-transition="flow" data-theme="b">Save Lobster</a>
+				</div>
+			</div>
+			
+<!-- Main home page -->
 			<div data-role="header" data-theme="b">
 				<a href="#menu" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
 				<h1>Spearfishing & Lobstering</h1>
@@ -57,6 +417,11 @@
 					<a href="#newLobsterCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true" >Add Lobster</a>
 					<br>
 					<a href="#newSpearCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true">Add Fish</a>
+					<br><br>
+					<br>
+					<a href="#addLobster1" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Add Lobster Style 1</a>
+					<br>
+					<a href="#addLobster11" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Add Lobster Style 2</a>
 				</center>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
