@@ -8,9 +8,10 @@
   // Wait for Cordova to load
 		    document.addEventListener("deviceready", onDeviceReady, false);
 		   
-			$(document).on( "mobileinit", function() {
-        $.mobile.defaultPageTransition = "none";
-    });
+			$(document).on("mobileinit", function(){
+				$.mobile.defaultDialogTransition = "none";
+				$.mobile.defaultPageTransition = "none";
+			});
 //Create the catch DB if not already created
 			// Cordova is ready
 		    function onDeviceReady() {
