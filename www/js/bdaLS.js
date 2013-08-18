@@ -5,6 +5,7 @@
 *
 */
 
+var userSignedIn=new Boolean(false);
   // Wait for Cordova to load
 		    document.addEventListener("deviceready", onDeviceReady, false);
 		   
@@ -12,6 +13,7 @@
 				$.mobile.defaultDialogTransition = "none";
 				$.mobile.defaultPageTransition = "none";
 			});
+			
 //Create the catch DB if not already created
 			// Cordova is ready
 		    function onDeviceReady() {
@@ -22,11 +24,134 @@
 		       //Create the fish database 
 		       var spDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
 		       spDB.transaction(populateSpeciesDB, errorSpeciesCB, successSpeciesCB);
+		       //Create the user database 
+		       var userDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+		       userDB.transaction(populateUserDB, errorUserCB, successUserCB);
 		      
 		      //Make the interface a bit pretty and UI easier to use
 		      hideForLobsterGPS();
 		      hideForFishGPS(); 
 		    }
+		   
+//user Database		    
+		     // Populate the database of all the species.
+		     //Need to make this a one time thing
+		    function populateUserDB(tx) {
+		        //tx.executeSql('DROP TABLE IF EXISTS USER');
+		    	tx.executeSql('CREATE TABLE IF NOT EXISTS USER (userID INTEGER PRIMARY KEY AUTOINCREMENT, firstName,  lastName, email, lobsterLicence, spearfishLicence, lionfishPermit)');
+		        }
+		    
+		     // If DB was created, then load the saved results into the catch table
+		    function successUserCB() {
+		    	var userDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+		        userDB.transaction(queryUserDB, errorUserCB);
+		        console.log("User DB created successfully");
+		    }
+		    
+		     // Query the database
+		    function queryUserDB(tx) {
+		    	console.log("loading user details...");
+		        tx.executeSql('SELECT * FROM USER', [], queryUserSuccess, errorUserCB);
+		    }
+		
+		    // Load the database into the catch table
+		    function queryUserSuccess(tx, results) {
+		        var len = results.rows.length;
+		        console.log("Found " + len + " users in the database!");
+		        if(len){
+		        		userSignedIn = true;
+		        		$("#appEnabled").show();
+						$("#appDisabled").hide();
+						$("#syncCatchButton").show();
+		        }else{
+		        	//There isn't anyone. need to hide the sync to DEP button under catch history and show the message on the first page!
+		        		$("#appEnabled").hide();
+						$("#appDisabled").show();
+						$("#syncCatchButton").hide();
+						userSignedIn = false;
+		        }
+		       
+		        for (var i=0; i<len; i++){
+		        	console.log("User ID: " + results.rows.item(i).firstName);
+		            populateUserInputScreen(results.rows.item(i).firstName, results.rows.item(i).lastName, results.rows.item(i).email, results.rows.item(i).lobsterLicence, results.rows.item(i).spearfishLicence, results.rows.item(i).lionfishPermit);
+		        }
+		        
+		    }
+		    
+		     // Transaction error callback
+		    function errorUserCB(err) {
+		        console.log("Error in Users: "+err.code);
+		    }
+		    
+		    //Places the saved information into the Sign in window for the user
+			function populateUserInputScreen(firstName, lastName, email, lobster, spearfish, lionfish)
+			{		
+				document.getElementById("firstName").value=firstName;
+				document.getElementById("lastName").value=lastName;
+				document.getElementById("email").value=email;
+				document.getElementById("lobsterLicence").value=lobster;
+				document.getElementById("spearfishingLicence").value=spearfish;
+				document.getElementById("lionfishPermit").value=lionfish;
+			}		   
+
+
+//Update user's details			    
+		    function saveUser(){
+		    	var userDB = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+				userDB.transaction(updateUser, errorUserUpdate, queryUserDB);
+		    }
+		    
+		    function updateUser(tx) {
+		    	if(userSignedIn){
+		    		tx.executeSql('DROP TABLE IF EXISTS USER');
+		    		tx.executeSql('CREATE TABLE IF NOT EXISTS USER (userID INTEGER PRIMARY KEY AUTOINCREMENT, firstName,  lastName, email, lobsterLicence, spearfishLicence, lionfishPermit)');
+		        
+		    		var sql = 'INSERT INTO USER (userID, firstName, lastName, email, lobsterLicence, spearfishLicence, lionfishPermit) VALUES ("' + 
+					'1", "' + 
+					document.getElementById("firstName").value + '", "' + 
+					document.getElementById("lastName").value + '", "' + 
+					document.getElementById("email").value  + '", "' +
+					document.getElementById("lobsterLicence").value + '", "' +
+					document.getElementById("spearfishingLicence").value + '", "' +
+					document.getElementById("lionfishPermit").value + '")';
+					alert("here: " + sql);
+		    		tx.executeSql(sql);
+		    	}else{
+		    		var sql = 'INSERT INTO USER (userID, firstName, lastName, email, lobsterLicence, spearfishLicence, lionfishPermit) VALUES ("' + 
+					'1", "' + 
+					document.getElementById("firstName").value + '", "' + 
+					document.getElementById("lastName").value + '", "' + 
+					document.getElementById("email").value  + '", "' +
+					document.getElementById("lobsterLicence").value + '", "' +
+					document.getElementById("spearfishingLicence").value + '", "' +
+					document.getElementById("lionfishPermit").value + '")';
+					alert("here: " + sql);
+		    		tx.executeSql(sql);
+		    	}
+		    }
+		    
+		    function errorUserUpdate(err) {
+		        console.log("Error updating User: "+err.code);
+		    }
+		    
+		     function userUpdateSuccessful(tx, results) {
+				//document.getElementById("firstName").reset();
+   				 today();	//re-populate today's date
+				var userDB = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+				userDB.transaction(queryUserDB, errorUserCB);
+			}
+	/*	    
+		    function userUpdateSuccessful(tx, results) {
+   				today();	//re-populate today's date
+				var db = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+				userDB.transaction(queryDB2, errorLobsterAdd);
+			}		   
+		   */
+	/////////////////	/////////////////	/////////////////	/////////////////	/////////////////	/////////////////
+		/////////////////	/////////////////	/////////////////	/////////////////	/////////////////
+			/////////////////	/////////////////	/////////////////	/////////////////	/////////////////	/////////////////
+	/////////////////	/////////////////	/////////////////	/////////////////	   
+		   
 		    
 		    
 //Species Database		    
@@ -58,9 +183,9 @@
 		    // Load the database into the catch table
 		    function querySpeciesSuccess(tx, results) {
 		        var len = results.rows.length;
-		        console.log("Found " + len + " species in the database!");
+		        //console.log("Found " + len + " species in the database!");
 		        for (var i=0; i<len; i++){
-		        	console.log("Specie ID: " + results.rows.item(i).sID);
+		        	//console.log("Specie ID: " + results.rows.item(i).sID);
 		             addToSpeciesList(results.rows.item(i).sID, results.rows.item(i).speciesName, results.rows.item(i).bagLimit, results.rows.item(i).minLength);
 		        }
 		    }
@@ -81,7 +206,7 @@
 				+ '<p>Bag Limit: ' + bagLimit + ' per day</p>'
 				+ '</a></li>';
 				
-				console.log("JQ: " + buildList);
+			//	console.log("JQ: " + buildList);
 						
 				$('#speciesList').append(buildList).trigger("create");	
 				$('#speciesList:visible').listview('refresh');
@@ -162,6 +287,11 @@
 		        }
 		    }
 		
+			function syncCatchDatabase(){
+				//Sync the local database to the online one.
+				
+				
+			}
 		
 //Add new lobster catch			    
 		    function addLobster(){

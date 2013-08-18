@@ -8,7 +8,7 @@
 		<link rel="shortcut icon" href="favicon.ico">
 		<script src="js/jquery.js"></script>
 		<script src="js/bdaLS.js"></script>		
-	<!--	<script src="js/cordova.js"></script>	-->
+		<script src="js/cordova.js"></script>	
 	
 		<script src="js/jquery.mobile-1.3.1.min.js"></script>
 		<script src="phonegap.js"></script>
@@ -408,20 +408,25 @@
 <!-- Main home page -->
 			<div data-role="header" data-theme="b">
 				<a href="#menu" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>
-				<h1>Spearfishing & Lobstering</h1>
+				<h1>Tails & Scales</h1>
 				<a href="#about" data-transition="slide" >About</a>
 			</div>
+			
 			<div data-role="content" data-theme="b">
 				<center><img src="img/imgs/bdaLobsterDiver.png" title="Lobster Diver" height=200 width=300></center>
 				<br>
 				<p>Welcome to Bermuda's first lobster diving and spearfishing app! Click the menu button to see the rules associated with lobster diving and spearfishing.</p>
-				
-				<p>Click below to add either a new lobster or spearfishing catch!</p>
-				<center>
-					<a href="#newLobsterCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true" >Add Lobster</a>  
-					<br>
-					<a href="#newSpearCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true">Add Fish</a>
 					
+				<div id="appDisabled" data-theme="e" style="background-color:gold;">
+					<p>You need to first enter in your details under the "Sign In" tab on the Menu before being able to use the app</p>
+				</div>
+				<div id="appEnabled">
+					<p>Click below to add either a new lobster or spearfishing catch!</p>
+					<center>
+						<a href="#newLobsterCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true" >Add Lobster</a>  
+						<br>
+						<a href="#newSpearCatch" data-role="button" data-icon="plus" data-iconpos="left" data-inline="true">Add Fish</a>
+				</div>	
 					
 			<!--	<br><br><br><br>	
 					<a href="#addLobster1" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="plus" data-theme="b">Add Lobster Style 1</a>
@@ -771,6 +776,8 @@
 			<div data-role="content" data-theme="b">
 				<p>This is your catch history. Click on the Details button to show/hide information from the table.</p>
 				<br>
+				<a id="syncCatchButton" data-role="button" onclick="syncCatchDatabase();">Sync Catches</a>
+				<br>
 					<table data-role="table" id="myTable"  data-column-btn-text="Details" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b">
 					  <thead>
 						<tr>
@@ -869,8 +876,8 @@
 			</div>
 			<div data-role="content" data-theme="b">
 				<p>This app was created to make the lives of Bermuda's Recreational Lobster Divers and Spearfishers easier for reporting their catches to the Department of Environmental Protection as well as to track for yourself. The app contains the rules for lobster diving, spearfishing, an island map, emergency contact info, and other useful information for lobster diving and spearfishing!</p>
-				<p>Please submit any feedback on this app so that we may improve the experience for you!</p>
-				<button>Submit Feedback!</button>
+				<p>Please submit any feedback on our Facebook Page so that we may improve the experience for you!</p>
+				<button href="https://www.facebook.com/pages/Tails-Scales/136044073271235" target="_blank">Launch Facebook</button>
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 				<h1>Something's Developing</h1>
@@ -989,18 +996,36 @@
 				<a data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="left" data-inline="true" href="#home" data-close-btn="none">Back</a>
 				<h1>Sign In</h1>
 			</div>
+			<div data-role="popup" id="confirmSaved" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+				<div data-role="header" data-theme="a" class="ui-corner-top">
+					<h1>Saved!</h1>
+				</div>
+				<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+					<h3 class="ui-title">Saved!</h3>
+					<p>Make sure that you have filled out all the information correctly!</p>
+					<a href="#home"  data-role="button" data-inline="true"  data-transition="flow" data-theme="b">Got it</a>
+				</div>
+			</div>
 			<div data-role="content" data-theme="b">
-				<p>Please sign in to your account</p>
+				<p>Please fill out the relevant details below.</p>
+				<label for="firstName">First Name</label>
+				<input type="text" name="firstName" id="firstName" placeholder="i.e. John" value="">
+				<label for="lastName">Last Name</label>
+				<input type="text" name="lastName" id="lastName" placeholder="i.e. Smith" value="">
 				<label for="email">Email</label>
-				<input type="text" name="email" id="email" placeholder="" value="">
+				<input type="text" name="email" id="email" placeholder="i.e. jsmith@email.com" value="">
+			<!--	
 				<label for="password">Password</label>
 				<input type="password" name="password" id="password" placeholder="" value="">
+			-->
 				<br>
-				<label for="lobsterLicense">Lobster License#:</label>
-				<input type="number" name="lobsterLicense" id="lobsterLicense" placeholder="License Number" value="">
-				<label for="spearfishingLicense">Spearfishing License#:</label>
-				<input type="number" name="spearfishingLicense" id="spearfishingLicense" placeholder="License Number" value="">
-				<button type="submit" id="submit">Sign In</button>	
+				<label for="lobsterLicence">Lobster Licence#:</label>
+				<input type="number" name="lobsterLicence" id="lobsterLicence" placeholder="i.e. 0123" value="">
+				<label for="spearfishingLicence">Spearfishing Licence#:</label>
+				<input type="number" name="spearfishingLicence" id="spearfishingLicence" placeholder="i.e. 0123" value="">
+				<label for="lionfishPermit">Lionfish Permit#:</label>
+				<input type="number" name="lionfishPermit" id="lionfishPermit" placeholder="i.e. 0123" value="">
+				<a type="submit" onclick="saveUser();" href="#confirmSaved" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" id="submit">Save</a>	
 			</div>
 			<div data-role="footer" data-position="fixed" data-theme="b">
 			</div>
