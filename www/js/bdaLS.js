@@ -59,10 +59,22 @@ var userSignedIn=new Boolean(false);
 		        var len = results.rows.length;
 		        console.log("Found " + len + " users in the database!");
 		        if(len){
+		        	if(results.rows.item(0).email==""){
+		        		console.log("You need to save your information!");
+		        		$("#appEnabled").hide();
+						$("#appDisabled").show();
+						$("#syncCatchButton").hide();
+						userSignedIn = false;
+		        	}else{
 		        		userSignedIn = true;
 		        		$("#appEnabled").show();
 						$("#appDisabled").hide();
 						$("#syncCatchButton").show();
+						 for (var i=0; i<len; i++){
+							console.log("User ID: " + results.rows.item(i).firstName);
+							populateUserInputScreen(results.rows.item(i).firstName, results.rows.item(i).lastName, results.rows.item(i).email, results.rows.item(i).lobsterLicence, results.rows.item(i).spearfishLicence, results.rows.item(i).lionfishPermit);
+						}
+					}
 		        }else{
 		        	//There isn't anyone. need to hide the sync to DEP button under catch history and show the message on the first page!
 		        		$("#appEnabled").hide();
@@ -70,12 +82,6 @@ var userSignedIn=new Boolean(false);
 						$("#syncCatchButton").hide();
 						userSignedIn = false;
 		        }
-		       
-		        for (var i=0; i<len; i++){
-		        	console.log("User ID: " + results.rows.item(i).firstName);
-		            populateUserInputScreen(results.rows.item(i).firstName, results.rows.item(i).lastName, results.rows.item(i).email, results.rows.item(i).lobsterLicence, results.rows.item(i).spearfishLicence, results.rows.item(i).lionfishPermit);
-		        }
-		        
 		    }
 		    
 		     // Transaction error callback
@@ -98,11 +104,11 @@ var userSignedIn=new Boolean(false);
 //Update user's details			    
 		    function saveUser(){
 		    	var userDB = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
-				userDB.transaction(updateUser, errorUserUpdate, queryUserDB);
+				userDB.transaction(updateUser, errorUserUpdate, goodUserSave);
 		    }
 		    
 		    function updateUser(tx) {
-		    	if(userSignedIn){
+		    //	if(userSignedIn){
 		    		tx.executeSql('DROP TABLE IF EXISTS USER');
 		    		tx.executeSql('CREATE TABLE IF NOT EXISTS USER (userID INTEGER PRIMARY KEY AUTOINCREMENT, firstName,  lastName, email, lobsterLicence, spearfishLicence, lionfishPermit)');
 		        
@@ -114,9 +120,9 @@ var userSignedIn=new Boolean(false);
 					document.getElementById("lobsterLicence").value + '", "' +
 					document.getElementById("spearfishingLicence").value + '", "' +
 					document.getElementById("lionfishPermit").value + '")';
-					alert("here: " + sql);
+				//	alert("here: " + sql);
 		    		tx.executeSql(sql);
-		    	}else{
+		 /*   	}else{
 		    		var sql = 'INSERT INTO USER (userID, firstName, lastName, email, lobsterLicence, spearfishLicence, lionfishPermit) VALUES ("' + 
 					'1", "' + 
 					document.getElementById("firstName").value + '", "' + 
@@ -125,28 +131,65 @@ var userSignedIn=new Boolean(false);
 					document.getElementById("lobsterLicence").value + '", "' +
 					document.getElementById("spearfishingLicence").value + '", "' +
 					document.getElementById("lionfishPermit").value + '")';
-					alert("here: " + sql);
+					//alert("here: " + sql);
 		    		tx.executeSql(sql);
 		    	}
+		    	*/
 		    }
 		    
 		    function errorUserUpdate(err) {
 		        console.log("Error updating User: "+err.code);
 		    }
 		    
-		     function userUpdateSuccessful(tx, results) {
-				//document.getElementById("firstName").reset();
+		    function goodUserSave(tx, results) {
    				 today();	//re-populate today's date
-				var userDB = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
-				userDB.transaction(queryUserDB, errorUserCB);
+				var userDB= window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
+				console.log("This error is a bad query :S");
+				userDB.transaction(querySavedUserDB, errorSavedUserCB);
 			}
-	/*	    
-		    function userUpdateSuccessful(tx, results) {
-   				today();	//re-populate today's date
-				var db = window.openDatabase("BdaLS", "1.0", "BDA Lobster Spear", 200000);
-				userDB.transaction(queryDB2, errorLobsterAdd);
-			}		   
-		   */
+			
+		     // Query the database
+		    function querySavedUserDB(tx) {
+		    	console.log("loading saved user details...");
+		        tx.executeSql('SELECT * FROM USER', [], querySavedUserSuccess, errorSavedUserCB);
+		    }
+		
+		    // Load the database into the catch table
+		    function querySavedUserSuccess(tx, results) {
+		        var len = results.rows.length;
+		        console.log("Found " + len + " saved users in the database!");
+		        if(len){
+		        	if(results.rows.item(0).email==""){
+		        		console.log("You need to save your information!");
+		        		$("#appEnabled").hide();
+						$("#appDisabled").show();
+						$("#syncCatchButton").hide();
+						userSignedIn = false;
+		        	}else{
+		        		userSignedIn = true;
+		        		$("#appEnabled").show();
+						$("#appDisabled").hide();
+						$("#syncCatchButton").show();
+						 for (var i=0; i<len; i++){
+							console.log("User ID: " + results.rows.item(i).firstName);
+							populateUserInputScreen(results.rows.item(i).firstName, results.rows.item(i).lastName, results.rows.item(i).email, results.rows.item(i).lobsterLicence, results.rows.item(i).spearfishLicence, results.rows.item(i).lionfishPermit);
+						}
+					}
+		        }else{
+		        	//There isn't anyone. need to hide the sync to DEP button under catch history and show the message on the first page!
+		        		$("#appEnabled").hide();
+						$("#appDisabled").show();
+						$("#syncCatchButton").hide();
+						userSignedIn = false;
+		        }
+		    }
+		    
+		     // Transaction error callback
+		    function errorSavedUserCB(err) {
+		        console.log("Error in Saved Users: "+err.code);
+		    }
+		    
+		   
 	/////////////////	/////////////////	/////////////////	/////////////////	/////////////////	/////////////////
 		/////////////////	/////////////////	/////////////////	/////////////////	/////////////////
 			/////////////////	/////////////////	/////////////////	/////////////////	/////////////////	/////////////////
